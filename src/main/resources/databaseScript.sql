@@ -1,7 +1,9 @@
+DROP DATABASE IF EXISTS oenskeskyen;
+
 CREATE DATABASE IF NOT EXISTS oenskeskyen;
 USE oenskeskyen;
-# lav database lokalt hvis det ikke virker 'oenskeskyen', alt i småt
 
+# lav database lokalt hvis det ikke virker 'oenskeskyen', alt i småt
 
 CREATE TABLE IF NOT EXISTS users
 (
@@ -9,7 +11,9 @@ CREATE TABLE IF NOT EXISTS users
     username   VARCHAR(155) UNIQUE NOT NULL,
     email      VARCHAR(155) UNIQUE NULL,
     password   VARCHAR(255)        NOT NULL,
+    birthday   DATE                NOT NULL,
     created_at TIMESTAMP           NOT NULL DEFAULT NOW()
+
 );
 
 CREATE TABLE IF NOT EXISTS wish_list
