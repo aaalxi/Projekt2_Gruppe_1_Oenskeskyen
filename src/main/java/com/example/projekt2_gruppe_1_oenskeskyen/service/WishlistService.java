@@ -13,7 +13,6 @@ public class WishlistService {
 
     public void createWishlist(Wishlist w) {
         wishlistRepo.createWishlist(w);
-
     }
 
 //    public List<Wishlist> getAllWishlistsByUserID(int userID) {
@@ -23,6 +22,9 @@ public class WishlistService {
 
     public Wishlist findWishlistByID(int ID) {
         return wishlistRepo.findWishlistByID(ID);
+    }
 
+    public void deleteWishlist(int id){
+        wishlistRepo.deleteWishlistByID(id);
     }
 }
