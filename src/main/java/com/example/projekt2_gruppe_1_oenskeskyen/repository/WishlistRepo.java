@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 @Repository
 public class WishlistRepo {
@@ -32,31 +31,6 @@ public class WishlistRepo {
             e.printStackTrace();
         }
     }
-    public ArrayList<Wishlist> getAllWishlistsByUserID(int userID){
-        ArrayList<Wishlist> wishlistArrayList = new ArrayList<>();
-        String sql = "SELECT * FROM wish_list WHERE user_id = ?";
-
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
-
-            statement.setInt(1,userID);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()){
-                Wishlist wishlist = new Wishlist();
-                wishlist.setID(resultSet.getInt("id"));
-                wishlist.setUserID(resultSet.getInt("user_id"));
-                wishlist.setTitle(resultSet.getString("title"));
-                wishlist.setShareToken(resultSet.getString("share_token"));
-                wishlist.setCreatedAt(resultSet.getTimestamp("created_at").toLocalDateTime());
-                wishlistArrayList.add(wishlist);
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return wishlistArrayList;
-    }
-
 
     public Wishlist findWishlistByID (int ID){
         String sql = "SELECT * FROM wish_list WHERE id = ?";
