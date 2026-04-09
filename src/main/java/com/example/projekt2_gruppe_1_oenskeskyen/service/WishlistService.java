@@ -1,7 +1,7 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.service;
 
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
-import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepository;
+import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class WishlistService {
 
     @Autowired
-    private WishlistRepository wishlistRepository;
+    private WishlistRepo wishlistRepo;
 
     public void createWishlist(Wishlist w) {
-        wishlistRepository.createWishlist(w);
+        wishlistRepo.createWishlist(w);
 
     }
 
@@ -22,7 +22,7 @@ public class WishlistService {
 //    }
 
     public Wishlist findWishlistByID(int ID) {
-        return wishlistRepository.findWishlistByID(ID);
+        return wishlistRepo.findWishlistByID(ID);
 
     }
 }

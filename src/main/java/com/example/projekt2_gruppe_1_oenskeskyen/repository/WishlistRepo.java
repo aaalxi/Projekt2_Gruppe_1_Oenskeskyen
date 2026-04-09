@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 @Repository
-public class WishlistRepository {
+public class WishlistRepo {
 
     @Autowired
     DataSource dataSource;

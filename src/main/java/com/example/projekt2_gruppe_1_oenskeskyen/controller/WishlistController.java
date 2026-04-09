@@ -2,7 +2,7 @@ package com.example.projekt2_gruppe_1_oenskeskyen.controller;
 
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
-import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepository;
+import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class WishlistController {
 
     @Autowired
-    WishlistRepository wishlistRepository;
+    WishlistRepo wishlistRepo;
 
     @Autowired
     WishlistService wishlistService;
@@ -24,7 +24,7 @@ public class WishlistController {
     @GetMapping("/wishlists")
     public String wishlistPage(Model model){
         int userID = 1; // midlertidigt
-        ArrayList<Wishlist> wishlists = wishlistRepository.getWishlistsbyUserID(userID);
+        ArrayList<Wishlist> wishlists = wishlistRepo.getWishlistsbyUserID(userID);
         model.addAttribute("wishlists", wishlists);
         System.out.println(wishlists.size());
 
