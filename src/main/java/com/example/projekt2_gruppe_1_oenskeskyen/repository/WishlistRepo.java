@@ -56,34 +56,8 @@ public class WishlistRepo {
         }
         return wishlistArrayList;
     }
-    public void updateWishlist (Wishlist w){
-        String sql = "UPDATE wish_list SET title = ?, share_token = ? WHERE id = ?";
 
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
 
-            statement.setString(1, w.getTitle());
-            statement.setString(2,w.getShareToken());
-            statement.setInt(3, w.getID());
-
-            statement.executeUpdate();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-    public void deleteWishlist (int id){
-        String sql = "DELETE FROM wish_list WHERE id = ?";
-
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setInt(1,id);
-            statement.executeUpdate();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
     public Wishlist findWishlistByID (int ID){
         String sql = "SELECT * FROM wish_list WHERE id = ?";
 
@@ -111,31 +85,5 @@ public class WishlistRepo {
         return null;
     }
 
-    public Wishlist findWishlistByShareToken (String token){
-        String sql = "SELECT * FROM wish_list WHERE share_token = ?";
-
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
-
-            statement.setString(1,token);
-            ResultSet resultSet = statement.executeQuery();
-
-            if(resultSet.next()){
-                Wishlist wishlist = new Wishlist();
-
-                wishlist.setID(resultSet.getInt("id"));
-                wishlist.setUserID(resultSet.getInt("user_id"));
-                wishlist.setTitle(resultSet.getString("title"));
-                wishlist.setShareToken(resultSet.getString("share_token"));
-                wishlist.setCreatedAt(resultSet.getTimestamp("created_at").toLocalDateTime());
-                return wishlist;
-            }
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }
 

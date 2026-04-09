@@ -23,22 +23,8 @@ public class WishlistService {
         return wishlistRepo.getAllWishlistsByUserID(userID);
     }
 
-    public void deleteWishlist(int wishlistID, int sessionUserID) {
-        Wishlist wishlist = wishlistRepo.findWishlistByID(wishlistID);
-
-        if(wishlist != null && wishlist.getUserID() == sessionUserID){
-            wishlistRepo.deleteWishlist(wishlistID);
-        }
-
-    }
-
     public Wishlist findWishlistByID(int ID) {
         return wishlistRepo.findWishlistByID(ID);
-
-    }
-
-    public Wishlist findWishlistByShareToken(String token) {
-        return wishlistRepo.findWishlistByShareToken(token);
 
     }
 }
