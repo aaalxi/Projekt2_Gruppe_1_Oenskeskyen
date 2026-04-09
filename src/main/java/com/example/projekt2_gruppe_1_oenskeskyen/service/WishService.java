@@ -21,28 +21,15 @@ public class WishService {
     }
 
     public void deleteWish(int wishId, int userId) {
-        try {
-            Wish wish = wishRepo.findById(wishId);
-            if (wish == null) {
-                throw new RuntimeException("Ønske ikke fundet");
-            }
+        Wish wish = wishRepo.findById(wishId);
 
-            Wishlist wishlist = wishlistRepo.findById(wish.getWishListId());
-            if (wishlist == null) {
-                throw new RuntimeException("Ønskeliste ikke fundet");
-            }
-            if (wishlist.getUserId() != userId) {
-                throw new SecurityException("Ikke tilladt");
-            }
+        Wishlist wishlist = wishlistRepo.findById(wish.getWishListId());
 
-            wishRepo.deleteReservationByWishId(wishId);
-            wishRepo.deleteById(wishId);
-
-        } catch (SecurityException e) {
-            throw e;
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Kunne ikke slette ønske", e);
+        if (wishlist.getUserId() != userId) {
+            throw new SecurityException("User not found");
         }
+
+        wishRepo.deleteById(wishId);
     }
 
 }
