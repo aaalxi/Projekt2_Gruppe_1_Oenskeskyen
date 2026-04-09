@@ -9,13 +9,17 @@ public class User {
     private String email;
     private LocalDate birthday;
     private LocalDateTime createdAt;
+    private String password;
 
-    public User(int ID, String username, String email, LocalDate birthday, LocalDateTime createdAt) {
-        this.ID = ID;
+    public User(String username, String email, String password, LocalDate birthday) {
         this.username = username;
         this.email = email;
         this.birthday = birthday;
-        this.createdAt = createdAt;
+        this.password = password;
+    }
+
+    public User(){
+
     }
 
     public int getID() {
@@ -56,5 +60,13 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

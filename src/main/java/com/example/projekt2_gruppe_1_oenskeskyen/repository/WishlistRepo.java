@@ -32,6 +32,23 @@ public class WishlistRepo {
         }
     }
 
+    public void updateWishlist (Wishlist w){
+        String sql = "UPDATE wish_list SET title = ?, share_token = ? WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setString(1, w.getTitle());
+            statement.setString(2,w.getShareToken());
+            statement.setInt(3, w.getID());
+
+            statement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public Wishlist findWishlistByID (int ID){
         String sql = "SELECT * FROM wish_list WHERE id = ?";
 
