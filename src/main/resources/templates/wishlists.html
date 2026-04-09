@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlists</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragment/header :: site-header"></div>
+</header>
+
+<div class="wishlist-list">
+    <div th:each="list : ${wishlists}" class="wishlist-individual">
+        <h3 th:text="${list.title}">Wishlist title</h3>
+        <p th:text="${list.size}">? wishes</p>
+        <p th:text="${list.created_at}">creation date</p>
+    </div>
+</div>
+
+<footer>
+    <div th:replace="fragment/footer :: site-footer"></div>
+</footer>
+</body>
+</html>
