@@ -23,6 +23,8 @@ public class WishlistController {
     public String wishlistPage(Model model){
         int userID = 1; // midlertidigt
         ArrayList<Wishlist> wishlists = wishlistRepository.getWishlistsbyUserID(userID);
+        model.addAttribute("wishlists", wishlists);
+        System.out.println(wishlists.size());
 
         return "wishlists";
     }
