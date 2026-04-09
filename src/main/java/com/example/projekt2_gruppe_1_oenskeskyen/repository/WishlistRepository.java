@@ -1,12 +1,11 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.repository;
 
-import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Repository
 public class WishlistRepository {
@@ -14,31 +13,27 @@ public class WishlistRepository {
     @Autowired
     DataSource dataSource;
 
-    public User getUserbyID(int id){
-        User user = null;
-        String sql = "SELECT * FROM users WHERE id = ?";
+    public ArrayList<Wishlist> getWishlistsbyUserID(int userID){
+        ArrayList<Wishlist> list = new ArrayList<>();
+        String sql = "SELECT * FROM wish_list WHERE user_id = ?";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)){
+        PreparedStatement statement = connection.prepareStatement(sql)){
 
-            statement.setInt(1, id);
+            statement.setInt(1, userID);
 
-            try (ResultSet resultSet = statement.executeQuery()){
-                if (resultSet.next()) {
-                    user = new User(
-                            resultSet.getInt("id"),
-                            resultSet.getString("username"),
-                            resultSet.getString("email"),
-                            resultSet.getDate("birthday").toLocalDate(),
-                            resultSet.getTimestamp("created_at").toLocalDateTime()
+            try (ResultSet rs = statement.executeQuery()){
+                while (rs.next()){
+                    Wishlist wishlist = new Wishlist(
+                            rs.getInt("id"),
+                            rs.getInt("user_id"),
+                            rs.getString("title"),
+                            rs.getString("share_token"),
+                            rs.getTimestamp("created_at").toLocalDateTime()
                     );
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
-        return user;
     }
 
     public void deleteWishlistByID(int id){
