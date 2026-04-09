@@ -1,5 +1,6 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.repository;
 
+import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

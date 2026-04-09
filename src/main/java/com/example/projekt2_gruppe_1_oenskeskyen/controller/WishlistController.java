@@ -26,6 +26,7 @@ public class WishlistController {
 
         return "wishlists";
     }
+
     @GetMapping("/wishlists/create")
     public String showCreateWishlist(){
         return "create-wishlist";

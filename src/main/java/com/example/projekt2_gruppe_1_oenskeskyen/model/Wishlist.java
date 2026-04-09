@@ -14,12 +14,22 @@ public class Wishlist {
         this.title = title;
         this.shareToken = shareToken;
     }
+
     public Wishlist(String title) {
         this.userID = userID;
         this.title = title;
         this.shareToken = shareToken;
     }
+
     public Wishlist(){
+    }
+
+    public Wishlist(int ID, int userID, String title, String shareToken, LocalDateTime createdAt) {
+        this.ID = ID;
+        this.userID = userID;
+        this.title = title;
+        this.shareToken = shareToken;
+        this.createdAt = createdAt;
     }
 
     public int getID() {
