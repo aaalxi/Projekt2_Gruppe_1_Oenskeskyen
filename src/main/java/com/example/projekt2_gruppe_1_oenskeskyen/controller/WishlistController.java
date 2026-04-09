@@ -17,6 +17,8 @@ public class WishlistController {
 
     @Autowired
     WishlistRepository wishlistRepository;
+
+    @Autowired
     WishlistService wishlistService;
 
     @GetMapping("/wishlists")
