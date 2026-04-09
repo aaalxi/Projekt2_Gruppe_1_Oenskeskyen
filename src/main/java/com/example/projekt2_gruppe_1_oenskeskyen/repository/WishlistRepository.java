@@ -31,9 +31,15 @@ public class WishlistRepository {
                             rs.getString("share_token"),
                             rs.getTimestamp("created_at").toLocalDateTime()
                     );
+                    list.add(wishlist);
                 }
             }
         }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     public void deleteWishlistByID(int id){
