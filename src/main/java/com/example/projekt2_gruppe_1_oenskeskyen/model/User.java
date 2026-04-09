@@ -1,0 +1,60 @@
+package com.example.projekt2_gruppe_1_oenskeskyen.model;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public class User {
+    private int ID;
+    private String username;
+    private String email;
+    private LocalDate birthday;
+    private LocalDateTime createdAt;
+
+    public User(int ID, String username, String email, LocalDate birthday, LocalDateTime createdAt) {
+        this.ID = ID;
+        this.username = username;
+        this.email = email;
+        this.birthday = birthday;
+        this.createdAt = createdAt;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+}
