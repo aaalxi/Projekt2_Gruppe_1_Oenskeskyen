@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+</head>
+<header>
+    <div th:replace="fragment/header :: site-header"></div>
+</header>
+
+<body>
+
+<h1>Wishlist items</h1>
+<a th:href="@{/wishlist}"></a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Handling</th>
+    </tr>
+
+    <tr th:each="wish : ${wishes}">
+        <td th:text="${wish.name}"></td>
+        <td th:text="${wish.description}"></td>
+        <td th:text="${wish.price}"></td>
+
+        <td>
+            <form th:action="@{/wish/delete}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+
+<footer>
+    <div th:replace="fragment/footer :: site-footer"></div>
+</footer>
+
+</html>
