@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlists</title>
+</head>
+<body>
+<header>
+    <div th:replace="fragment/header :: site-header"></div>
+</header>
+
+<div class="wishlist-list">
+    <a th:each="list : ${wishlists}" class="wishlist-individual"
+       th:href="@{/wishlist/{id}(id=${list.id})}"> <!-- th:href skal umiddelbart stå her når det bliver lavet -->
+        <h3 th:text="${list.title}">Wishlist title</h3>
+
+        <div class="wishlist-text">
+            <p th:text="${list.created_at}">creation date</p>
+        </div>
+    </a>
+</div>
+
+<footer>
+    <div th:replace="fragment/footer :: site-footer"></div>
+</footer>
+</body>
+</html>
