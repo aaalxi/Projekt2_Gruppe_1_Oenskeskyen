@@ -10,11 +10,14 @@
 </header>
 
 <div class="wishlist-list">
-    <div th:each="list : ${wishlists}" class="wishlist-individual">
+    <a th:each="list : ${wishlists}" class="wishlist-individual"> <!-- th:href skal umiddelbart stå her når det bliver lavet -->
         <h3 th:text="${list.title}">Wishlist title</h3>
-        <p th:text="${list.size}">? wishes</p>
-        <p th:text="${list.created_at}">creation date</p>
-    </div>
+
+        <div class="wishlist-text">
+            <p th:text="${list.size}">? wishes</p>
+            <p th:text="${list.created_at}">creation date</p>
+        </div>
+    </a>
 </div>
 
 <footer>
