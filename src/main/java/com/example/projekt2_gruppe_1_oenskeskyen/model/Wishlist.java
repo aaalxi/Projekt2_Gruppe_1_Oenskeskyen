@@ -15,12 +15,6 @@ public class Wishlist {
         this.shareToken = shareToken;
     }
 
-    public Wishlist(String title) {
-        this.userID = userID;
-        this.title = title;
-        this.shareToken = shareToken;
-    }
-
     public Wishlist(){
     }
 
