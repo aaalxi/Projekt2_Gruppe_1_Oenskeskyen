@@ -1,10 +1,10 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Wish {
-    private int id;
+    private int ID;
     private int wishlistID;
     private String name;
     private String url;
@@ -26,12 +26,23 @@ public class Wish {
 
     public Wish () {}
 
-    public int getId() {
-        return id;
+    public Wish(int ID, int wishlistID, String name, String description, String url, double price, int priority, LocalDateTime createdAt) {
+        this.ID = ID;
+        this.wishlistID = wishlistID;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+        this.price = price;
+        this.priority = priority;
+        this.createdAt = createdAt;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getWishListID() {

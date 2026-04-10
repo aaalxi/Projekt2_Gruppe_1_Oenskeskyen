@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Repository
 public class WishRepo {
@@ -17,18 +18,17 @@ public class WishRepo {
     @Autowired                          //opretter datasource objekt inde i klassen
     DataSource dataSource;
 
-
-
     public void createWish (Wish wish) {
-        String sql = "INSERT INTO wish (name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)){
 
-            statement.setString(1, wish.getName());   //skal stemme overens med række i parameteroverførsel
-            statement.setString(2, wish.getDescription());
-            statement.setString(3, wish.getUrl());
-            statement.setDouble(4, wish.getPrice());
-            statement.setInt(5, wish.getPriority());
+            statement.setInt(1, wish.getWishListID());
+            statement.setString(2, wish.getName());   //skal stemme overens med række i parameteroverførsel
+            statement.setString(3, wish.getDescription());
+            statement.setString(4, wish.getUrl());
+            statement.setDouble(5, wish.getPrice());
+            statement.setInt(6, wish.getPriority());
 
             statement.executeUpdate();
 
@@ -37,10 +37,7 @@ public class WishRepo {
         }
     }
 
-
-
-
-    public Wish findByWishID (int id) {
+    public Wish findWishByWishID (int id) {
         Wish wish = null;
         String sql = "SELECT * FROM wish WHERE id = ?";
 
@@ -66,6 +63,38 @@ public class WishRepo {
             e.printStackTrace();
         }
         return wish;
+    }
+
+    public ArrayList<Wish> getWishesByWishlistID(int wishlistID){
+        ArrayList<Wish> list = new ArrayList<>();
+        String sql = "SELECT * FROM wish WHERE wish_list_id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setInt(1, wishlistID);
+
+            try (ResultSet rs = statement.executeQuery()){
+                while (rs.next()) {
+                    Wish wish = new Wish(
+                            rs.getInt("id"),
+                            rs.getInt("wish_list_id"),
+                            rs.getString("name"),
+                            rs.getString("description"),
+                            rs.getString("url"),
+                            rs.getDouble("price"),
+                            rs.getInt("priority"),
+                            rs.getTimestamp("created_at").toLocalDateTime()
+                    );
+                    list.add(wish);
+                }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
 }
