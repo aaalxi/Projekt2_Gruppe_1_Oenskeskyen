@@ -5,6 +5,8 @@ import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WishlistService {
 
@@ -15,16 +17,16 @@ public class WishlistService {
         wishlistRepo.createWishlist(w);
     }
 
-//    public List<Wishlist> getAllWishlistsByUserID(int userID) {
-//
-//        return wishlistRepo.getAllWishlistsByUserID(userID);
-//    }
+    public List<Wishlist> getAllWishlistsByUserID(int userID) {
+
+        return wishlistRepo.getWishlistsbyUserID(userID);
+    }
 
     public Wishlist findWishlistByID(int ID) {
         return wishlistRepo.findWishlistByID(ID);
     }
 
-    public void deleteWishlist(int id){
-        wishlistRepo.deleteWishlistByID(id);
+    public void deleteWishlist(int wishlistID) {
+        wishlistRepo.deleteWishlistByID(wishlistID);
     }
 }

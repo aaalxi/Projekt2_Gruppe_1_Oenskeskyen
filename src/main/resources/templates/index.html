@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Start</title>
 </head>
 <header>
-    <div th:replace="fragment/header :: site-header"></div>
+    <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
 <body>
 
 <p>
- hej
+ <a href="/login">Login</a>
+    <a href="/user-register">Opret bruger</a>
 </p>
 
 <a href="/wishlists">se wishlist</a>
@@ -19,7 +20,8 @@
 </body>
 
 <footer>
-    <div th:replace="fragment/footer :: site-footer"></div>
+    <div th:replace="~{fragment/footer :: site-footer}"></div>
 </footer>
+
 
 </html>

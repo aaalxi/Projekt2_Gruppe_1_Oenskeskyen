@@ -1,10 +1,12 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
 
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wish;
+import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishService;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
 import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepo;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class WishlistController {
-
-    @Autowired
-    WishlistRepo wishlistRepo;
 
     @Autowired
     WishlistService wishlistService;
@@ -30,7 +30,7 @@ public class WishlistController {
     @GetMapping("/wishlists")
     public String wishlistPage(Model model){
         int userID = 1; // midlertidigt
-        ArrayList<Wishlist> wishlists = wishlistRepo.getWishlistsbyUserID(userID);
+        List<Wishlist> wishlists = wishlistService.getAllWishlistsByUserID(userID);
         model.addAttribute("wishlists", wishlists);
         System.out.println(wishlists.size());
 

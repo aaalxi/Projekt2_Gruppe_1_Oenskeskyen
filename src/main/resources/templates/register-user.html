@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RegisterUser</title>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragment/header :: site-header}"></div>
+</header>
+
+<h1>Opret ny bruger</h1>
+
+<form th:action="@{/user-register}" method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="eks. rune123@gmail.com" required>
+    <label for="birthday">Birthday</label>
+    <input type="date" id="birthday" name="birthday" required>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Opret bruger</button>
+    <button type="reset">Nulstil form</button>
+</form>
+
+
+<footer>
+    <div th:replace="~{fragment/footer :: site-footer}"></div>
+</footer>
+</body>
+</html>
