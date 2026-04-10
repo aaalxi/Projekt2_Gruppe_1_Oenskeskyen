@@ -53,6 +53,14 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/profile")
+    public String showProfile(HttpSession session){
+        if(session.getAttribute("user") == null){
+            return "redirect:/login";
+        }
+        return "profile";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();

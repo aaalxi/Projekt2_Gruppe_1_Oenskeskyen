@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+
+<body>
+<header>
+    <div th:replace="fragment/header :: site-header"></div>
+</header>
+
+<h1>Min profil</h1>
+
+<p>Brugernavn: <span th:text="${session.user.username}"></span></p>
+<p>Email: <span th:text="${session.user.email}"></span></p>
+<p>Fødselsdag: <span th:text="${session.user.birthday}"></span></p>
+
+<a th:href="@{/logout}">Log ud</a>
+<footer>
+    <div th:replace="fragment/footer :: site-footer"></div>
+</footer>
+</body>
+</html>
