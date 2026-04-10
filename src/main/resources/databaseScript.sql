@@ -1,3 +1,4 @@
+DROP DATABASE oenskeskyen;
 CREATE DATABASE IF NOT EXISTS oenskeskyen;
 USE oenskeskyen;
 

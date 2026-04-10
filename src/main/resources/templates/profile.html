@@ -7,7 +7,7 @@
 
 <body>
 <header>
-    <div th:replace="fragment/header :: site-header"></div>
+    <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
 <h1>Min profil</h1>
@@ -18,7 +18,7 @@
 
 <a th:href="@{/logout}">Log ud</a>
 <footer>
-    <div th:replace="fragment/footer :: site-footer"></div>
+    <div th:replace="~{fragment/footer :: site-footer}"></div>
 </footer>
 </body>
 </html>
