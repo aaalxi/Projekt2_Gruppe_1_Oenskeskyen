@@ -4,26 +4,26 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class User {
-    private int ID;
+    private int id;
     private String username;
     private String email;
     private LocalDate birthday;
     private LocalDateTime createdAt;
 
-    public User(int ID, String username, String email, LocalDate birthday, LocalDateTime createdAt) {
-        this.ID = ID;
+    public User(int id, String username, String email, LocalDate birthday, LocalDateTime createdAt) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.birthday = birthday;
         this.createdAt = createdAt;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
