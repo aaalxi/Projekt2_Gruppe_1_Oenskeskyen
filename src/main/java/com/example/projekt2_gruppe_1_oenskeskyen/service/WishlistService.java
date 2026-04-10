@@ -18,10 +18,10 @@ public class WishlistService {
 
     }
 
-    public List<Wishlist> getAllWishlistsByUserID(int userID) {
-
-        return wishlistRepo.getAllWishlistsByUserID(userID);
-    }
+//    public List<Wishlist> getAllWishlistsByUserID(int userID) {
+//
+//        return wishlistRepo.getAllWishlistsByID(userID);
+//    }
 
     public Wishlist findWishlistByID(int ID) {
         return wishlistRepo.findWishlistByID(ID);
