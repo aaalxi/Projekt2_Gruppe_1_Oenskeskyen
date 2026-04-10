@@ -1,5 +1,4 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
-
 import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.UserService;
 import jakarta.servlet.http.HttpSession;
