@@ -19,7 +19,14 @@ public class User {
     }
 
     public User(){
+    }
 
+    public User(int ID, String username, String email, LocalDate birthday, LocalDateTime createdAt) {
+        this.ID = ID;
+        this.username = username;
+        this.email = email;
+        this.birthday = birthday;
+        this.createdAt = createdAt;
     }
 
     public int getID() {
