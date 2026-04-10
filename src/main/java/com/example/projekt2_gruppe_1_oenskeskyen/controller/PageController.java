@@ -11,9 +11,4 @@ public class PageController {
 
         return "index";
     }
-
-    @GetMapping("/wishlists")
-    public String wishlistPage(){
-        return "wishlists";
-    }
 }
