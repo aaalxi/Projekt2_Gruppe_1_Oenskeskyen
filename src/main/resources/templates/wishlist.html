@@ -13,7 +13,7 @@
     <h3 th:text="${wishlist.title}"></h3>
     <div th:each="wish : ${wishes}">
         <p th:text="${wish.getName()}"></p>
-        <p th:text="${wish.getDescription()}">text</p>
+        <p th:text="${wish.getDescription()}"></p>
         <p th:text="${wish.getPrice()}"></p>
         <!-- denne side er ikke færdig endnu -->
     </div>
@@ -23,6 +23,11 @@
     <form th:action="@{/wishlists/delete}" method="post">
         <input type="hidden" th:name="ID" th:value="${wishlist.ID}">
         <button type="submit">Slet liste</button>
+    </form>
+
+    <form th:action="@{/wishlist/add}" method="get">
+        <input type="hidden" th:name="" th:value="">
+        <button type="submit">Tilføj ønske</button>
     </form>
 </div>
 
