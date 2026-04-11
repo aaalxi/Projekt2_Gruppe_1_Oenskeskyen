@@ -19,7 +19,7 @@ public class WishRepo {
     DataSource dataSource;
 
     public void createWish (Wish wish) {
-        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)){
 
