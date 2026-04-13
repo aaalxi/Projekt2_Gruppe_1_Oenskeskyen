@@ -38,6 +38,6 @@ public class WishController {
                                     @RequestParam("id") int wishlistId) {
         Wish wish = new Wish(name, url, description, price, priority, wishlistId);
         wishService.createWish(wish);
-        return  "redirect:/wishlists/" + wishlistId;
+        return  "redirect:/profile/wishlistId=" + wishlistId;
     }
 }

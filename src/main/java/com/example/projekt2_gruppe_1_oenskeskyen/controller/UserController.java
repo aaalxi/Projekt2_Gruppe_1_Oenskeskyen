@@ -1,20 +1,28 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
+
 import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
+import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.UserService;
+import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    WishlistService wishlistService;
 
     @GetMapping("/user-register")
     public String showRegisterUser(){
@@ -52,10 +60,14 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(HttpSession session){
-        if(session.getAttribute("user") == null){
+    public String showProfile(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
             return "redirect:/login";
         }
+        List<Wishlist> wishlists = wishlistService.getAllWishlistsByUserID(user.getId());
+        model.addAttribute("wishlists", wishlists);
+
         return "profile";
     }
 
