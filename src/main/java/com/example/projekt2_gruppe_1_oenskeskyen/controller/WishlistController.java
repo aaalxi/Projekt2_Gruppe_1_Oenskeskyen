@@ -29,6 +29,9 @@ public class WishlistController {
     @GetMapping("/wishlists")
     public String wishlistPage(Model model, HttpSession session){
         User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
         List<Wishlist> wishlists = wishlistService.getAllWishlistsByUserID(user.getId());
         model.addAttribute("wishlists", wishlists);
         return "wishlists";
