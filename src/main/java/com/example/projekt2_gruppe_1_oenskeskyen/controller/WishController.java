@@ -51,7 +51,8 @@ public class WishController {
         if(user == null){
             return "redirect:/login";
         }
-        wishService.deleteWishByWishId(wishId, user.getId(), wishlistId);
+        wishService.deleteWishByWishId(wishId, user.getId());
+
         return "redirect:/profile/wishlist/" + wishlistId;
     }
 }
