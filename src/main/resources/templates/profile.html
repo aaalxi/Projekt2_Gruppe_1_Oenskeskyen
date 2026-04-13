@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/header.css}">
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
     <title>Profile</title>
 </head>
 
@@ -25,6 +26,11 @@
 
 <div>
     <h2>Ønskelister</h2>
+    <div>
+        <a th:href="@{/profile/createWishlist}">
+            <button>Opret ny ønskeliste</button>
+        </a>
+    </div>
 
     <div class="wishlist-list">
         <div th:each="list : ${wishlists}" class="wishlist-individual">
@@ -38,16 +44,11 @@
 
             <form th:action="@{/profile/deleteWishlist}" method="post">
                 <input type="hidden" th:name="ID" th:value="${list.ID}">
-                <button type="submit">Slet liste</button>
+                <button type="submit" class="delete-button">Slet liste</button>
             </form>
         </div>
     </div>
 
-    <div>
-        <a th:href="@{/profile/createWishlist}">
-            <button>Opret ny ønskeliste</button>
-        </a>
-    </div>
 </div>
 
 

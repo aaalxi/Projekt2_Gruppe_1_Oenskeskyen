@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
     <title>Wishlist</title>
 </head>
 <body>
@@ -23,7 +25,7 @@
 <div>
     <form th:action="@{/profile/deleteWishlist}" method="post">
         <input type="hidden" th:name="ID" th:value="${wishlist.ID}">
-        <button type="submit">Slet ønskeliste</button>
+        <button type="submit" class="delete-button">Slet ønskeliste</button>
     </form>
 
     <a th:href="@{/wishlist/add(id=${wishlist.ID})}">
