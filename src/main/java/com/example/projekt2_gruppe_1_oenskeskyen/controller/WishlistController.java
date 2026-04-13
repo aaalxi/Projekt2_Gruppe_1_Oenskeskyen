@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 public class WishlistController {
@@ -26,45 +26,34 @@ public class WishlistController {
     @Autowired
     WishService wishService;
 
-    @GetMapping("/wishlists")
-    public String wishlistPage(Model model, HttpSession session){
-        User user = (User) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/login";
-        }
-        List<Wishlist> wishlists = wishlistService.getAllWishlistsByUserID(user.getId());
-        model.addAttribute("wishlists", wishlists);
-        return "wishlists";
-    }
-
-    @GetMapping("/wishlists/create")
+    @GetMapping("/profile/createWishlist")
     public String showCreateWishlist(){
         return "create-wishlist";
     }
 
-    @PostMapping("/wishlists/create")
+    @PostMapping("/profile/createWishlist")
     public String createWishlist(@RequestParam("title") String title, HttpSession session){
         User user = (User) session.getAttribute("user");
         Wishlist wishlist = new Wishlist(user.getId(),title,null);
         wishlistService.createWishlist(wishlist);
-        return "redirect:/wishlists";
+        return "redirect:/profile";
     }
 
-    @PostMapping("/wishlists/delete")
+    @PostMapping("/profile/deleteWishlist")
     public String deleteWishlist(@RequestParam("ID") int id, HttpSession session) {
         User user = (User) session.getAttribute("user");
         wishlistService.deleteWishlist(id, user.getId());
 
-        return "redirect:/wishlists";
+        return "redirect:/profile";
     }
 
-    @GetMapping("/wishlists/{id}")
+    @GetMapping("/profile/wishlistId={id}")
     public String showWishlist(@PathVariable int id, Model model){
-
         Wishlist wishlist = wishlistService.findWishlistByID(id);
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
+
         return "wishlist";
     }
 }
