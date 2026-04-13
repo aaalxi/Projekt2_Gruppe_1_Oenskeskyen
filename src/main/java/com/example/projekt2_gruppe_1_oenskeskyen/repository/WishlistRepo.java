@@ -90,7 +90,7 @@ public class WishlistRepo {
         }
     }
 
-    public Wishlist findWishlistByID (int ID){
+    public Wishlist findWishlistByWishlistId (int ID){
         String sql = "SELECT * FROM wish_list WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();

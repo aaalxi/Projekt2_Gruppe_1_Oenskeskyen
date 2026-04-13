@@ -23,11 +23,11 @@ public class WishlistService {
     }
 
     public Wishlist findWishlistByID(int ID) {
-        return wishlistRepo.findWishlistByID(ID);
+        return wishlistRepo.findWishlistByWishlistId(ID);
     }
 
     public void deleteWishlist(int wishlistID, int sessionUserID) {
-        Wishlist wishlist = wishlistRepo.findWishlistByID(wishlistID);
+        Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
         if(wishlist != null && wishlist.getUserID() == sessionUserID){
             wishlistRepo.deleteWishlistByID(wishlistID);
         }

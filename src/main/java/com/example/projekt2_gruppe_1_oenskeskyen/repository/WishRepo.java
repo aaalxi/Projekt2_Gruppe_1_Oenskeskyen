@@ -100,7 +100,7 @@ public class WishRepo {
         return list;
     }
 
-    public void deleteById(int id) {
+    public void deleteWishByWishId(int id) {
         String sql = "DELETE FROM wish WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
@@ -111,30 +111,6 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Wish findById(int id) {
-        String sql = "SELECT * FROM wish WHERE id = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return new Wish(
-                        rs.getInt("id"),
-                        rs.getInt("wish_list_id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("url"),
-                        rs.getDouble("price"),
-                        rs.getInt("priority"),
-                        rs.getObject("created_at", LocalDateTime.class)
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public void deleteReservationByWishId(int wishId) {
