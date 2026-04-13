@@ -40,7 +40,7 @@ public class WishController {
                                     @RequestParam("id") int wishlistId) {
         Wish wish = new Wish(name, url, description, price, priority, wishlistId);
         wishService.createWish(wish);
-        return  "redirect:/profile/wishlistId=" + wishlistId;
+        return  "redirect:/profile/wishlist/" + wishlistId;
     }
 
     @PostMapping("/wishlist/delete")
@@ -52,6 +52,6 @@ public class WishController {
             return "redirect:/login";
         }
         wishService.deleteWishByWishId(wishId, user.getId(), wishlistId);
-        return "redirect:/profile/wishlistId=" + wishlistId;
+        return "redirect:/profile/wishlist/" + wishlistId;
     }
 }
