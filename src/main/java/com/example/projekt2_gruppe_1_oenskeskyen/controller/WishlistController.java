@@ -60,6 +60,7 @@ public class WishlistController {
 
     @GetMapping("/wishlists/{id}")
     public String showWishlist(@PathVariable int id, Model model){
+
         Wishlist wishlist = wishlistService.findWishlistByID(id);
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
         model.addAttribute("wishlist", wishlist);
