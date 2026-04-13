@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Din profil</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
@@ -10,7 +12,7 @@
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<div>
+<div class="main-content">
     <h1>Min profil</h1>
 
     <section>
@@ -22,7 +24,7 @@
     <a th:href="@{/logout}">Log ud</a>
 </div>
 
-<div>
+<div class="main-content">
     <h2>Ønskelister</h2>
 
     <div class="wishlist-list">

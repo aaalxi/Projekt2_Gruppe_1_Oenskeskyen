@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret ønskeliste</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
 
 <header>
-  <div th:replace="~{fragment/header :: site-header}"></div>
+    <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<h1>Opret ny ønskeliste</h1>
+<div class="main-content">
+    <h1>Opret ny ønskeliste</h1>
 
-<form th:action="@{/profile/createWishlist}" method="post">
-  <label for="title">Navngiv din ønskeliste</label>
- <input type="text" id="title" name="title" placeholder="eks. Fødselsdagsliste" required>
-  <button type="submit">Opret</button>
-</form>
+    <form th:action="@{/profile/createWishlist}" method="post">
+        <label for="title">Navngiv din ønskeliste</label>
+        <input type="text" id="title" name="title" placeholder="eks. Fødselsdagsliste" required>
+        <button type="submit">Opret</button>
+    </form>
+</div>
 
 <footer>
-  <div th:replace="~{fragment/footer :: site-footer}"></div>
+    <div th:replace="~{fragment/footer :: site-footer}"></div>
 </footer>
 
 </body>

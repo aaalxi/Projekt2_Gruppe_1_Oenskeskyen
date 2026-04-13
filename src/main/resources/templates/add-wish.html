@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Tilføj ønske</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 <header>
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<div>
+<div class="main-content">
     <form th:action="@{/wishlist/add}" method="post">
         <label for="name">Navn</label>
         <input type="text" id="name" name="name" required>

@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrer bruger</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 <header>
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<h1>Opret ny bruger</h1>
+<div class="main-content">
+    <h1>Opret ny bruger</h1>
 
-<form th:action="@{/user-register}" method="post">
-    <label for="username">Brugernavn: </label>
-    <input type="text" id="username" name="username" required>
-    <label for="email">E-mail: </label>
-    <input type="email" id="email" name="email" placeholder="eks. rune123@gmail.com" required>
-    <label for="birthday">Fødselsdato: </label>
-    <input type="date" id="birthday" name="birthday" required>
-    <label for="password">Kodeord: </label>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Opret bruger</button>
-    <button type="reset">Nulstil form</button>
-</form>
-
+    <form th:action="@{/user-register}" method="post">
+        <label for="username">Brugernavn: </label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">E-mail: </label>
+        <input type="email" id="email" name="email" placeholder="eks. rune123@gmail.com" required>
+        <label for="birthday">Fødselsdato: </label>
+        <input type="date" id="birthday" name="birthday" required>
+        <label for="password">Kodeord: </label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Opret bruger</button>
+        <button type="reset">Nulstil form</button>
+    </form>
+</div>
 
 <footer>
     <div th:replace="~{fragment/footer :: site-footer}"></div>
