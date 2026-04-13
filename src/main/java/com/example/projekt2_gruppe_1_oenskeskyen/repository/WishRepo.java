@@ -49,14 +49,16 @@ public class WishRepo {
 
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()) {
-                    wish = new Wish();
-                    wish.setName(result.getString("name"));
-                    wish.setDescription(result.getString("description"));
-                    wish.setUrl(result.getString("url"));
-                    wish.setPrice(result.getDouble("price"));
-                    wish.setPriority(result.getInt("priority"));
-                    wish.setCreatedAt(result.getTimestamp("created_at").toLocalDateTime());
-                    wish.setWishListID(result.getInt("wish_list_id"));
+                    wish = new Wish(
+                            result.getInt("id"),
+                            result.getInt("wish_list_id"),
+                            result.getString("name"),
+                            result.getString("description"),
+                            result.getString("url"),
+                            result.getDouble("price"),
+                            result.getInt("priority"),
+                            result.getTimestamp("created_at").toLocalDateTime()
+                    );
                 }
                 if (wish == null) {
                     System.out.println("No wish found with id " + id);
