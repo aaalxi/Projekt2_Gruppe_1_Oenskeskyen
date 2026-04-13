@@ -42,6 +42,10 @@ public class WishlistController {
     @PostMapping("/profile/deleteWishlist")
     public String deleteWishlist(@RequestParam("ID") int id, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+
         wishlistService.deleteWishlist(id, user.getId());
 
         return "redirect:/profile";
