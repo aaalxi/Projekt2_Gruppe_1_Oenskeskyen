@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 @Repository
 public class WishRepo {
@@ -21,7 +22,7 @@ public class WishRepo {
     public void createWish (Wish wish) {
         String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)){
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, wish.getWishListID());
             statement.setString(2, wish.getName());   //skal stemme overens med række i parameteroverførsel
@@ -37,12 +38,12 @@ public class WishRepo {
         }
     }
 
-    public Wish findWishByWishID (int id) {
+    public Wish findWishByWishID(int id) {
         Wish wish = null;
         String sql = "SELECT * FROM wish WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();            //lukker auto. forbindelser
-        PreparedStatement statement = connection.prepareStatement(sql)){    //beskytter mod SQL injection
+             PreparedStatement statement = connection.prepareStatement(sql)) {    //beskytter mod SQL injection
 
             statement.setInt(1, id);
 
@@ -56,7 +57,9 @@ public class WishRepo {
                     wish.setPriority(result.getInt("priority"));
                     wish.setCreatedAt(result.getTimestamp("created_at").toLocalDateTime());
                 }
-                if (wish == null) { System.out.println("No wish found with id " + id); }
+                if (wish == null) {
+                    System.out.println("No wish found with id " + id);
+                }
             }
 
         } catch (SQLException e) {
@@ -65,16 +68,16 @@ public class WishRepo {
         return wish;
     }
 
-    public ArrayList<Wish> getWishesByWishlistID(int wishlistID){
+    public ArrayList<Wish> getWishesByWishlistID(int wishlistID) {
         ArrayList<Wish> list = new ArrayList<>();
         String sql = "SELECT * FROM wish WHERE wish_list_id = ?";
 
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, wishlistID);
 
-            try (ResultSet rs = statement.executeQuery()){
+            try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
                     Wish wish = new Wish(
                             rs.getInt("id"),
@@ -95,6 +98,54 @@ public class WishRepo {
         }
 
         return list;
+    }
+
+    public void deleteById(int id) {
+        String sql = "DELETE FROM wish WHERE id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Wish findById(int id) {
+        String sql = "SELECT * FROM wish WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return new Wish(
+                        rs.getInt("id"),
+                        rs.getInt("wish_list_id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getString("url"),
+                        rs.getDouble("price"),
+                        rs.getInt("priority"),
+                        rs.getObject("created_at", LocalDateTime.class)
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void deleteReservationByWishId(int wishId) {
+        String sql = "DELETE FROM reservation WHERE wish_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, wishId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
