@@ -124,7 +124,7 @@ public class UserRepo {
         PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setString(1, user.getUsername());
-            statement.setInt(2, user.getID());
+            statement.setInt(2, user.getId());
 
             statement.executeUpdate();
 
