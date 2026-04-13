@@ -41,5 +41,4 @@ public class WishService {
     public ArrayList<Wish> getWishesByWishlistID(int id) {
         return wishRepo.getWishesByWishlistID(id);
     }
-
 }

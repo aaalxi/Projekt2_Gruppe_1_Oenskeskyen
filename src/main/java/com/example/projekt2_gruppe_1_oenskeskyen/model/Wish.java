@@ -16,12 +16,13 @@ public class Wish {
     //med i konstruktør
 
 
-    public Wish(String name, String url, String description, double price, int priority) {
+    public Wish(String name, String url, String description, double price, int priority, int wishlistID) {
         this.name = name;
         this.url = url;
         this.description = description;
         this.price = price;
         this.priority=priority;
+        this.wishlistID = wishlistID;
     }
 
     public Wish () {}

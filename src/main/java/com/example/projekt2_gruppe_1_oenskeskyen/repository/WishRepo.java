@@ -19,8 +19,8 @@ public class WishRepo {
     @Autowired                          //opretter datasource objekt inde i klassen
     DataSource dataSource;
 
-    public void createWish(Wish wish) {
-        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void createWish (Wish wish) {
+        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -92,7 +92,8 @@ public class WishRepo {
                     list.add(wish);
                 }
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
 
