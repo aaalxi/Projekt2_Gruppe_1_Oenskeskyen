@@ -1,9 +1,11 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
 
+import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wish;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishService;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +27,10 @@ public class WishlistController {
     WishService wishService;
 
     @GetMapping("/wishlists")
-    public String wishlistPage(Model model){
-        int userID = 1; // midlertidigt
-        List<Wishlist> wishlists = wishlistService.getAllWishlistsByUserID(userID);
+    public String wishlistPage(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        List<Wishlist> wishlists = wishlistService.getAllWishlistsByUserID(user.getId());
         model.addAttribute("wishlists", wishlists);
-        System.out.println(wishlists.size());
-
         return "wishlists";
     }
 
@@ -40,15 +40,17 @@ public class WishlistController {
     }
 
     @PostMapping("/wishlists/create")
-    public String createWishlist(@RequestParam("title") String title){
-        Wishlist wishlist = new Wishlist(1,title,null); //Hardcodet hvilken user. Tror vi skal bruge noget session til at vide hvem er logget ind.
+    public String createWishlist(@RequestParam("title") String title, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Wishlist wishlist = new Wishlist(user.getId(),title,null);
         wishlistService.createWishlist(wishlist);
         return "redirect:/wishlists";
     }
 
     @PostMapping("/wishlists/delete")
-    public String deleteWishlist(@RequestParam("ID") int id) {
-        wishlistService.deleteWishlist(id);
+    public String deleteWishlist(@RequestParam("ID") int id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        wishlistService.deleteWishlist(id, user.getId());
 
         return "redirect:/wishlists";
     }
