@@ -1,8 +1,17 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
 <header th:fragment="site-header">
 
-  <p>
-    hej igen
-  </p>
+  <nav>
+    <a href="/login" th:if="${session.user == null}">Login</a>
+    <a href="/user-register" th:if="${session.user == null}">Opret bruger</a>
+
+
+    <a href="/profile" th:if="${session.user != null}">Profil</a>
+    <a href="/logout" th:if="${session.user != null}">Log ud</a>
+  </nav>
 
 </header>
+</body>
+</html>
