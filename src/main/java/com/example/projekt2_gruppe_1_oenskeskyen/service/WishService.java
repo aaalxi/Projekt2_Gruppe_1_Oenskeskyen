@@ -7,6 +7,8 @@ import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class WishService {
 
@@ -23,13 +25,21 @@ public class WishService {
     public void deleteWish(int wishId, int userId) {
         Wish wish = wishRepo.findById(wishId);
 
-        Wishlist wishlist = wishlistRepo.findById(wish.getWishListId());
+        Wishlist wishlist = wishlistRepo.findWishlistByID(wish.getWishListID());
 
-        if (wishlist.getUserId() != userId) {
+        if (wishlist.getUserID() != userId) {
             throw new SecurityException("User not found");
         }
 
         wishRepo.deleteById(wishId);
+    }
+
+    public void createWish(Wish wish){
+        wishRepo.createWish(wish);
+    }
+
+    public ArrayList<Wish> getWishesByWishlistID(int id) {
+        return wishRepo.getWishesByWishlistID(id);
     }
 
 }
