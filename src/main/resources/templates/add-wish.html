@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>add wish</title>
+    <title>Tilføj ønske</title>
 </head>
 <body>
 <header>
@@ -13,7 +13,7 @@
     <form th:action="@{/wishlist/add}" method="post">
         <label for="name">Navn</label>
         <input type="text" id="name" name="name" required>
-        <label for="url">URL</label>
+        <label for="url">Link</label>
         <input type="url" id="url" name="url">
         <label for="description">Beskrivelse</label>
         <input type="text" id="description" name="description">

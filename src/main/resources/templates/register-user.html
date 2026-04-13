@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>RegisterUser</title>
+    <title>Registrer bruger</title>
 </head>
 <body>
 <header>
@@ -12,13 +12,13 @@
 <h1>Opret ny bruger</h1>
 
 <form th:action="@{/user-register}" method="post">
-    <label for="username">Username</label>
+    <label for="username">Brugernavn: </label>
     <input type="text" id="username" name="username" required>
-    <label for="email">Email</label>
+    <label for="email">E-mail: </label>
     <input type="email" id="email" name="email" placeholder="eks. rune123@gmail.com" required>
-    <label for="birthday">Birthday</label>
+    <label for="birthday">Fødselsdato: </label>
     <input type="date" id="birthday" name="birthday" required>
-    <label for="password">Password</label>
+    <label for="password">Kodeord: </label>
     <input type="password" id="password" name="password" required>
     <button type="submit">Opret bruger</button>
     <button type="reset">Nulstil form</button>
