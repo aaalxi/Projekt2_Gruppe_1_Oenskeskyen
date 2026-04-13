@@ -22,21 +22,21 @@ public class WishService {
         return wishRepo.findWishByWishID(id);
     }
 
-    public void deleteWishByWishId(int wishId, int userId, int wishlistId) {
+    public void deleteWishByWishId(int wishId, int userId) {
         Wish wish = wishRepo.findWishByWishID(wishId);
         if (wish == null) {
             System.out.println("no wish found");
             return;
         }
 
-        Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistId);
+        Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wish.getWishListID());
         if (wishlist == null) {
             System.out.println("No wishlist found");
             return;
         }
 
         if (wishlist.getUserID() != userId) {
-            throw new SecurityException("User not found");
+            throw new SecurityException("User not authorized");
         }
 
         wishRepo.deleteWishByWishId(wishId);
