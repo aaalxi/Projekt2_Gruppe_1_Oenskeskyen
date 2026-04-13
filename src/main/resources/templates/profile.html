@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
     <title>Profile</title>
 </head>
 
@@ -20,7 +21,6 @@
         <p>Fødselsdag: <span th:text="${session.user.birthday}"></span></p>
     </section>
 
-    <a th:href="@{/logout}">Log ud</a>
 </div>
 
 <div>
