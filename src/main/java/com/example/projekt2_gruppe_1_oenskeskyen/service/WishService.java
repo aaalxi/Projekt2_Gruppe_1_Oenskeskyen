@@ -18,20 +18,28 @@ public class WishService {
     @Autowired
     private WishlistRepo wishlistRepo;
 
-    public Wish findById(int id) {
-        return wishRepo.findById(id);
+    public Wish findWishByWishId(int id) {
+        return wishRepo.findWishByWishID(id);
     }
 
-    public void deleteWish(int wishId, int userId) {
-        Wish wish = wishRepo.findById(wishId);
-
-        Wishlist wishlist = wishlistRepo.findWishlistByID(wish.getWishListID());
-
-        if (wishlist.getUserID() != userId) {
-            throw new SecurityException("User not found");
+    public void deleteWishByWishId(int wishId, int userId) {
+        Wish wish = wishRepo.findWishByWishID(wishId);
+        if (wish == null) {
+            System.out.println("no wish found");
+            return;
         }
 
-        wishRepo.deleteById(wishId);
+        Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wish.getWishListID());
+        if (wishlist == null) {
+            System.out.println("No wishlist found");
+            return;
+        }
+
+        if (wishlist.getUserID() != userId) {
+            throw new SecurityException("User not authorized");
+        }
+
+        wishRepo.deleteWishByWishId(wishId);
     }
 
     public void createWish(Wish wish){

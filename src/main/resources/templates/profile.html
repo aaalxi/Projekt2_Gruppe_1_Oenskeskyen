@@ -35,7 +35,7 @@
 
     <div class="wishlist-list">
         <div th:each="list : ${wishlists}" class="wishlist-individual">
-            <a th:href="@{/profile/wishlistId={id}(id=${list.ID})}">
+            <a th:href="@{/profile/wishlist/{id}(id=${list.ID})}">
                 <h3 th:text="${list.title}">Wishlist title</h3>
 
                 <div class="wishlist-text">

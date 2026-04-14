@@ -49,13 +49,16 @@ public class WishRepo {
 
             try (ResultSet result = statement.executeQuery()) {
                 if (result.next()) {
-                    wish = new Wish();      //skal bruge en tom konstruktør
-                    wish.setName(result.getString("name"));
-                    wish.setDescription(result.getString("description"));
-                    wish.setUrl(result.getString("url"));
-                    wish.setPrice(result.getDouble("price"));
-                    wish.setPriority(result.getInt("priority"));
-                    wish.setCreatedAt(result.getTimestamp("created_at").toLocalDateTime());
+                    wish = new Wish(
+                            result.getInt("id"),
+                            result.getInt("wish_list_id"),
+                            result.getString("name"),
+                            result.getString("description"),
+                            result.getString("url"),
+                            result.getDouble("price"),
+                            result.getInt("priority"),
+                            result.getTimestamp("created_at").toLocalDateTime()
+                    );
                 }
                 if (wish == null) {
                     System.out.println("No wish found with id " + id);
@@ -100,7 +103,7 @@ public class WishRepo {
         return list;
     }
 
-    public void deleteById(int id) {
+    public void deleteWishByWishId(int id) {
         String sql = "DELETE FROM wish WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
@@ -111,30 +114,6 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Wish findById(int id) {
-        String sql = "SELECT * FROM wish WHERE id = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                return new Wish(
-                        rs.getInt("id"),
-                        rs.getInt("wish_list_id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("url"),
-                        rs.getDouble("price"),
-                        rs.getInt("priority"),
-                        rs.getObject("created_at", LocalDateTime.class)
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public void deleteReservationByWishId(int wishId) {

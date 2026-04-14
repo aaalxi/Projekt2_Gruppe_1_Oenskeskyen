@@ -42,12 +42,16 @@ public class WishlistController {
     @PostMapping("/profile/deleteWishlist")
     public String deleteWishlist(@RequestParam("ID") int id, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+
         wishlistService.deleteWishlist(id, user.getId());
 
         return "redirect:/profile";
     }
 
-    @GetMapping("/profile/wishlistId={id}")
+    @GetMapping("/profile/wishlist/{id}")
     public String showWishlist(@PathVariable int id, Model model){
         Wishlist wishlist = wishlistService.findWishlistByID(id);
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());

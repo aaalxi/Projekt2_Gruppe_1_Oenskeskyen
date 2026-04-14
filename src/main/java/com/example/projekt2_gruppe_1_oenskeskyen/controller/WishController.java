@@ -1,9 +1,11 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
 
+import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wish;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishService;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +40,19 @@ public class WishController {
                                     @RequestParam("id") int wishlistId) {
         Wish wish = new Wish(name, url, description, price, priority, wishlistId);
         wishService.createWish(wish);
-        return  "redirect:/profile/wishlistId=" + wishlistId;
+        return  "redirect:/profile/wishlist/" + wishlistId;
+    }
+
+    @PostMapping("/wishlist/delete")
+    public String deleteWishFromWishlist(@RequestParam("wishId") int wishId,
+                                         @RequestParam("wishlistId") int wishlistId,
+                                         HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        wishService.deleteWishByWishId(wishId, user.getId());
+
+        return "redirect:/profile/wishlist/" + wishlistId;
     }
 }

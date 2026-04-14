@@ -25,8 +25,6 @@ public class Wish {
         this.wishlistID = wishlistID;
     }
 
-    public Wish () {}
-
     public Wish(int ID, int wishlistID, String name, String description, String url, double price, int priority, LocalDateTime createdAt) {
         this.ID = ID;
         this.wishlistID = wishlistID;
