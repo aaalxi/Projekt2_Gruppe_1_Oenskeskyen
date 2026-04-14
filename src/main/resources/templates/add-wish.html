@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/header.css}">
     <link rel="stylesheet" th:href="@{/footer.css}">
-    <title>add wish</title>
+    <title>Tilføj ønske</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
 </head>
 <body>
 <header>
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<div>
+<div class="main-content">
     <form th:action="@{/wishlist/add}" method="post">
         <label for="name">Navn</label>
         <input type="text" id="name" name="name" required>
-        <label for="url">URL</label>
+        <label for="url">Link</label>
         <input type="url" id="url" name="url">
         <label for="description">Beskrivelse</label>
         <input type="text" id="description" name="description">

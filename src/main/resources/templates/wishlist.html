@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/header.css}">
     <link rel="stylesheet" th:href="@{/footer.css}">
-    <title>Wishlist</title>
+    <title>Ønskeliste</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
 </head>
 <body>
 <header>
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<div>
+<div class="main-content">
     <h3 th:text="${wishlist.title}"></h3>
     <div th:each="wish : ${wishes}">
         <p th:text="${wish.getName()}"></p>
@@ -22,7 +23,7 @@
     </div>
 </div>
 
-<div>
+<div class="main-content">
     <form th:action="@{/profile/deleteWishlist}" method="post">
         <input type="hidden" th:name="ID" th:value="${wishlist.ID}">
         <button type="submit" class="delete-button">Slet ønskeliste</button>

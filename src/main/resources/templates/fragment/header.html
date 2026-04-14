@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<header th:fragment="site-header">
-
+<header th:fragment="site-header" class="site-header">
+    <link rel="stylesheet" th:href="@{/style.css}">
   <nav>
     <a href="/login" th:if="${session.user == null}">Login</a>
     <a href="/user-register" th:if="${session.user == null}">Opret bruger</a>
@@ -12,6 +12,12 @@
     <a href="/logout" th:if="${session.user != null}">Log ud</a>
   </nav>
 
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/oenskelogosvg.svg" alt="logo" class="logo">
+    </a>
+  </div>
 </header>
 </body>
 </html>
