@@ -175,6 +175,7 @@ footer {
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
+    justify-content: center;
 }
 
 .wishlist-individual {
@@ -183,11 +184,11 @@ footer {
     padding: 16px;
     padding-bottom: 48px;
     width: 220px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
-.wishlist-wishes  {
+.wishlist-wishes {
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
@@ -195,6 +196,9 @@ footer {
 
 .wish-box {
     display: flex;
+    align-items: center;
+    flex-direction: row;
+
 }
 
 .wish-individual {
@@ -202,9 +206,11 @@ footer {
     border-radius: 8px;
     padding: 16px;
     padding-bottom: 48px;
-    width: 220px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
+    /*margin: 6px;*/
+
 }
 
 .wishlist-individual a {
@@ -225,6 +231,19 @@ footer {
     padding-top: 2em;
 }
 
+.delete-button-container{
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    /*flex-direction: row;*/
+}
+
+#dlt-btn {
+    position: absolute;
+    top: 106px;
+    left: 110px;
+}
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -239,11 +258,9 @@ button:hover {
 }
 
 .delete-button {
-    bottom: 8px;
-    right: 8px;
     background-color: #e74c3c;
     padding: 4px 8px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .delete-button:hover {

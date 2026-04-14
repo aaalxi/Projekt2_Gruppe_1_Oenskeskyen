@@ -22,17 +22,17 @@
             </form>
         </div>
 
-        <div class="wish-box">
+        <div class="wishlist-list">
             <div class="wish-individual" th:each="wish : ${wishes}">
                 <p th:text="${wish.getName()}"></p>
                 <p th:text="${wish.getDescription()}"></p>
                 <p th:text="${wish.getPrice()}"></p>
                 <!-- denne side er ikke færdig endnu -->
 
-                <form th:action="@{/wishlist/delete}" method="post">
+                <form class="delete-button-container" th:action="@{/wishlist/delete}" method="post">
                     <input type="hidden" th:name="wishId" th:value="${wish.ID}">
                     <input type="hidden" th:name="wishlistId" th:value="${wishlist.ID}">
-                    <button type="submit">Slet ønske</button>
+                    <button class="delete-button" id="dlt-btn" type="submit">Slet ønske</button>
                 </form>
             </div>
         </div>
@@ -44,6 +44,9 @@
         <a th:href="@{/wishlist/add(id=${wishlist.ID})}">
             <button type="submit">Tilføj ønske til ønskeliste</button>
         </a>
+        <p>
+            <br>
+        </p>
     </div>
 </div>
 
