@@ -201,6 +201,8 @@ footer {
     justify-content: center;
     gap: 400px;
     flex-wrap: wrap;
+
+    
 }
 .site-footer .container {
     display: flex;
@@ -245,6 +247,9 @@ footer {
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
+    justify-content: flex-start;
+    align-content: flex-start;
+
 
 }
 
