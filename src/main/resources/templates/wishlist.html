@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
@@ -24,7 +24,7 @@
 
         <div class="wishlist-list">
             <div class="wish-individual" th:each="wish : ${wishes}">
-                <p th:text="${wish.getName()}"></p>
+                <strong><p id="black" th:text="${wish.getName()}"></p></strong>
                 <p th:text="${wish.getDescription()}"></p>
                 <p th:text="${wish.getPrice()}"></p>
                 <!-- denne side er ikke færdig endnu -->

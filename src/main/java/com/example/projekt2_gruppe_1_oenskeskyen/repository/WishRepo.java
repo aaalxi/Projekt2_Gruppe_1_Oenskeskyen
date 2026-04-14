@@ -116,15 +116,4 @@ public class WishRepo {
         }
     }
 
-    public void deleteReservationByWishId(int wishId) {
-        String sql = "DELETE FROM reservation WHERE wish_id = ?";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, wishId);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
