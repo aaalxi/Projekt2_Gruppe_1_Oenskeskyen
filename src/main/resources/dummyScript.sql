@@ -14,15 +14,19 @@ USE oenskeskyen;
 # users dummy data
 INSERT INTO users(username, email, password, birthday, created_at)
 VALUES(
-       'runeBear', 'epstein@gmail.com', 'hej312', '1966-01-05', '2020-01-01'
+          'Rune', 'test1@gmail.com', '1234', '1966-01-05', '2020-01-01'
       );
 INSERT INTO users(username, email, password, birthday, created_at)
 VALUES(
-        'obama4', 'epsps@hotmail.com', 'hej312353324', '2001-12-16', '2019-08-05'
+        'Nico', 'test2@hotmail.com', '1234', '2001-12-16', '2019-08-05'
       );
 INSERT INTO users(username, email, password, birthday, created_at)
 VALUES(
-          'WarriorsaN', 'kea@gmail.com', 'penis', '1999-03-05', '2015-08-28'
+          'Daniel', 'test3@gmail.com', '1234', '1999-03-05', '2015-08-28'
+      );
+INSERT INTO users(username, email, password, birthday, created_at)
+VALUES(
+          'Ava', 'test4@gmail.com', '1234', '1999-03-05', '2015-08-28'
       );
 
 # wishlist dummy data
