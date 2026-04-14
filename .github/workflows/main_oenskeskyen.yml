@@ -61,4 +61,5 @@ jobs:
           app-name: 'oenskeskyen'
           slot-name: 'Production'
           package: '*.jar'
+          retention-days: 1
           
