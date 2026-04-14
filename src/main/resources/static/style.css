@@ -212,6 +212,15 @@ footer {
     color: #333;
 }
 
+.wishlist-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.wishlist-title-container form {
+    margin-left: auto;
+}
+
 button {
     background-color: #4CAF50;
     color: white;
