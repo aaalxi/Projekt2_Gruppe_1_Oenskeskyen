@@ -36,9 +36,10 @@ public class WishController {
                                    @RequestParam("url") String url,
                                    @RequestParam("description") String description,
                                    @RequestParam("price") double price,
+                                    @RequestParam("currency") String currency,
                                    @RequestParam("priority") int priority,
                                     @RequestParam("id") int wishlistId) {
-        Wish wish = new Wish(name, url, description, price, priority, wishlistId);
+        Wish wish = new Wish(name, url, description, price, currency, priority, wishlistId);
         wishService.createWish(wish);
         return  "redirect:/profile/wishlist/" + wishlistId;
     }

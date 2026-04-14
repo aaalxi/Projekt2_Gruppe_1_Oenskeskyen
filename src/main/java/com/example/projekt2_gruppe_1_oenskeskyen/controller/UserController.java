@@ -36,7 +36,9 @@ public class UserController {
 
         User user = new User(username,email,password,birthday);
         userService.register(user);
-        session.setAttribute("user", user);
+
+        User savedUser = userService.login(username,password);
+        session.setAttribute("user", savedUser);
         return "redirect:/profile";
     }
 

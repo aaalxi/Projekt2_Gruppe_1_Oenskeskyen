@@ -41,7 +41,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 32px;
+    padding: 32px 32px 0 32px;
 }
 
 h1 {
@@ -164,14 +164,15 @@ a:hover {
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
     background: var(--primary);
     border-top: 1px solid var(--border);
     padding: 1.5rem 2rem;
     text-align: center;
+    margin-top: auto;
+    margin-left: -32px;
+    margin-right: -32px;
+    width: calc(100% + 64px);
 }
 
 .site-footer {
@@ -338,6 +339,61 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
+}
+
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+/*add-wish styling*/
+.wish-textarea{
+    resize: none;
+}
+.wish-form {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 400px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.wish-form label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+}
+
+.wish-form button {
+    margin-top: 1rem;
+}
+
+textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
 }
 
 #black {

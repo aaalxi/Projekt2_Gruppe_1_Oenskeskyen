@@ -1,5 +1,5 @@
-DROP DATABASE oenskeskyen;
-CREATE DATABASE IF NOT EXISTS oenskeskyen;
+DROP DATABASE IF EXISTS oenskeskyen;
+CREATE DATABASE oenskeskyen;
 USE oenskeskyen;
 
 # lav database lokalt hvis det ikke virker 'oenskeskyen', alt i småt
@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS wish
     description  VARCHAR(500)   NULL,
     url          VARCHAR(1000)  NULL,
     price        DECIMAL(10, 2) NULL,
+    currency     VARCHAR(3)     NOT Null,
     priority     INT NULL CHECK (priority BETWEEN 1 AND 5),
     created_at   TIMESTAMP      NOT NULL DEFAULT NOW()
 );

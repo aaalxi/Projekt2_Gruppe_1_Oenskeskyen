@@ -1,5 +1,3 @@
-# DROP DATABASE IF EXISTS oenskeskyen;
-# CREATE DATABASE oenskeskyen;
 USE oenskeskyen;
 
 # uncomment linjerne under, kør dem og recomment dem
@@ -44,17 +42,17 @@ VALUES(
       );
 
 # wish dummy data
-INSERT INTO wish(id, wish_list_id, name, description, url, price, priority, created_at)
+INSERT INTO wish(id, wish_list_id, name, description, url, price, currency, priority, created_at)
 VALUES(
-          1, 1, 'bil', 'sort audi', 'audi.com', 66666.66,5, '2025-04-04'
+          1, 1, 'bil', 'sort audi', 'audi.com', 66666.66, 'DKK',5, '2025-04-04'
       );
-INSERT INTO wish(id, wish_list_id, name, description, url, price, priority, created_at)
+INSERT INTO wish(id, wish_list_id, name, description, url, price, currency, priority, created_at)
 VALUES(
-          2, 2, 'anders and bamse', 'anders and bamse', 'quackquackquack.dk', 50.00,2, '2023-11-12'
+          2, 2, 'anders and bamse', 'anders and bamse', 'quackquackquack.dk', 50.00,'SEK',2, '2023-11-12'
       );
-INSERT INTO wish(id, wish_list_id, name, description, url, price, priority, created_at)
+INSERT INTO wish(id, wish_list_id, name, description, url, price, currency, priority, created_at)
 VALUES(
-          3, 3, 'sokker', 'ønsker mig lyserøde nike sokker med pletter på', 'nike.com', 1,4, '1972-10-25 11:10:09'
+          3, 3, 'sokker', 'ønsker mig lyserøde nike sokker med pletter på', 'nike.com', 1,'GBP',4, '1972-10-25 11:10:09'
       );
 
 # reservation dummy data
