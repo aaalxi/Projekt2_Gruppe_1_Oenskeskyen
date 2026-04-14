@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="stylesheet" th:href="@{/header.css}">
-    <link rel="stylesheet" th:href="@{/footer.css}">
     <title>Ønskeliste</title>
     <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
 </head>
@@ -15,13 +13,15 @@
 
 <div class="main-content">
     <div class="wishlist-wishes">
-            <h3 th:text="${wishlist.title}"></h3>
+        <h3 th:text="${wishlist.title}"></h3>
+        <div class="wish-box">
             <div class="wish-individual" th:each="wish : ${wishes}">
                 <p th:text="${wish.getName()}"></p>
                 <p th:text="${wish.getDescription()}"></p>
                 <p th:text="${wish.getPrice()}"></p>
                 <!-- denne side er ikke færdig endnu -->
             </div>
+        </div>
     </div>
 </div>
 

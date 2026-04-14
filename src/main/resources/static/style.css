@@ -186,10 +186,13 @@ footer {
 }
 
 .wishlist-wishes  {
-    display: flex;
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
+}
+
+.wish-box {
+    display: flex;
 }
 
 .wish-individual {
