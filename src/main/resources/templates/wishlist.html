@@ -34,9 +34,11 @@
 </div>
 
 <div class="main-content">
-    <a th:href="@{/wishlist/add(id=${wishlist.ID})}">
-        <button type="submit">Tilføj ønske til ønskeliste</button>
-    </a>
+    <div class="wishlist-button">
+        <a th:href="@{/wishlist/add(id=${wishlist.ID})}">
+            <button type="submit">Tilføj ønske til ønskeliste</button>
+        </a>
+    </div>
 </div>
 
 <footer>

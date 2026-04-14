@@ -219,6 +219,10 @@ footer {
     margin-left: auto;
 }
 
+.wishlist-button {
+    padding-top: 2em;
+}
+
 button {
     background-color: #4CAF50;
     color: white;
