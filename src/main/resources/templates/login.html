@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="stylesheet" th:href="@{/header.css}">
-    <link rel="stylesheet" th:href="@{/footer.css}">
     <title>Login side</title>
     <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
 </head>
 <body>
 
-<header class="site-header">
+<header>
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
@@ -19,9 +17,9 @@
 
     <form th:action="@{/login}" method="post">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" value="Rune" required>
+        <input type="text" id="username" name="username" value="runeBear" required>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" value="xsw2zaq1" required>
+        <input type="password" id="password" name="password" value="hej312" required>
         <button type="submit">Login</button>
     </form>
 </div>

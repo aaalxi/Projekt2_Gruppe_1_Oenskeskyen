@@ -6,7 +6,7 @@
 
 :root {
     --primary: #9ecfff;
-    --primary-dark: #2F72B8;
+    --primary-dark: #51a4fa;
     --primary-light: #EAF3FB;
     --accent: #5DD4A8;
     --accent-dark: #1D9E75;
@@ -82,60 +82,65 @@ a:hover {
     text-decoration: underline;
 }
 
-header {
-    background: var(--primary-dark);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
+.site-header {
     position: sticky;
-    top: 0;
-    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background: #0c1116;
+    border-radius: 15px;
+
 }
 
-.site-header {
+.logo {
+    align-items: center;
+    width: 2em;
+    height: 2em;
+}
+
+.logo img {
+    object-fit: contain;
+}
+
+.right-oriented {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 60px;
-    gap: 1.5rem;
+    gap: 2em;
 }
 
-.site-header .logo {
+.right-oriented nav {
+
+}
+
+.right-oriented nav a {
+    color: #fdfdfd !important;
+}
+
+.profile a {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    overflow: hidden;
     display: flex;
-    align-items: start;
-    gap: 10px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-    text-decoration: none;
+    align-items: center;
+    justify-content: center;
 }
 
-.site-header .logo img,
-.site-header .logo svg {
-    width: 40px;
-    height: 40px;
-    left: -120px;
-    top: 10px;
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.site-header nav {
-    position: fixed;
-    align-items: end;
-    gap: 1.5rem;
+.dropdown {
+    display: none;
+    margin-right: auto;
 }
 
-.site-header nav a {
-    display: flex;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    text-decoration: none;
-    padding: 4px 0;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-    justify-content: end;
-    display: inline;
+.profile:hover .dropdown {
+    display: block;
+    position: absolute;
 }
 
 footer {

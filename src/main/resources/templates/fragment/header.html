@@ -1,23 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/style.css}">
 <body>
 <header th:fragment="site-header" class="site-header">
-    <link rel="stylesheet" th:href="@{/style.css}">
-  <nav>
-    <a href="/login" th:if="${session.user == null}">Login</a>
-    <a href="/user-register" th:if="${session.user == null}">Opret bruger</a>
-
-
-    <a href="/profile" th:if="${session.user != null}">Profil</a>
-    <a href="/logout" th:if="${session.user != null}">Log ud</a>
-  </nav>
 
 
   <div class="logo">
-    <a href="index.html">
-      <img src="img/oenskelogosvg.svg" alt="logo" class="logo">
+    <a href="/profile">
+      <img src="/img/oenskelogosvg.svg" alt="logo" class="image">
     </a>
   </div>
+
+  <div class="right-oriented">
+    <nav>
+      <a href="/user-register" th:if="${session.user == null}">Opret bruger</a>
+      <a href="/login" th:if="${session.user == null}">Login</a>
+
+      <a href="/logout" th:if="${session.user != null}">Log ud</a>
+    </nav>
+
+    <div th:if="${session.user != null}" class="profile">
+      <a href="/profile">
+          <img src="/img/profile.jpg" alt="profile" class="image">
+      </a>
+
+      <div class="dropdown">
+        <p>Brugernavn: <span th:text="${session.user.username}"></span></p>
+        <p>Email: <span th:text="${session.user.email}"></span></p>
+        <p>Fødselsdag: <span th:text="${session.user.birthday}"></span></p>
+      </div>
+
+    </div>
+  </div>
+
+
 </header>
 </body>
 </html>
