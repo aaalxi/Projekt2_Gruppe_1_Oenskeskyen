@@ -14,12 +14,14 @@
 </header>
 
 <div class="main-content">
-    <h3 th:text="${wishlist.title}"></h3>
-    <div th:each="wish : ${wishes}">
-        <p th:text="${wish.getName()}"></p>
-        <p th:text="${wish.getDescription()}"></p>
-        <p th:text="${wish.getPrice()}"></p>
-        <!-- denne side er ikke færdig endnu -->
+    <div class="wishlist-wishes">
+            <h3 th:text="${wishlist.title}"></h3>
+            <div class="wish-individual" th:each="wish : ${wishes}">
+                <p th:text="${wish.getName()}"></p>
+                <p th:text="${wish.getDescription()}"></p>
+                <p th:text="${wish.getPrice()}"></p>
+                <!-- denne side er ikke færdig endnu -->
+            </div>
     </div>
 </div>
 
