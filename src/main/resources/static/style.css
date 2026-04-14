@@ -258,6 +258,7 @@ footer {
     padding-bottom: 48px;
     width: 220px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #4bae4f;
 }
 
 .wishlist-wishes {
@@ -277,9 +278,14 @@ footer {
     background-color: white;
     border-radius: 8px;
     padding: 16px;
-    padding-bottom: 48px;
     min-width: 200px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #4bae4f;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
 }
 
 .wishlist-individual a {
@@ -301,16 +307,8 @@ footer {
 }
 
 .delete-button-container{
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    /*flex-direction: row;*/
-}
-
-#dlt-btn {
-    position: absolute;
-    top: 106px;
-    left: 110px;
+    margin-top: auto;
+    align-self: flex-end;
 }
 
 button {
