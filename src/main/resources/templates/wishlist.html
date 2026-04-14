@@ -28,6 +28,12 @@
                 <p th:text="${wish.getDescription()}"></p>
                 <p th:text="${wish.getPrice()}"></p>
                 <!-- denne side er ikke færdig endnu -->
+
+                <form th:action="@{/wishlist/delete}" method="post">
+                    <input type="hidden" th:name="wishId" th:value="${wish.ID}">
+                    <input type="hidden" th:name="wishlistId" th:value="${wishlist.ID}">
+                    <button type="submit">Slet ønske</button>
+                </form>
             </div>
         </div>
     </div>
@@ -41,8 +47,6 @@
     </div>
 </div>
 
-<footer>
-    <div th:replace="~{fragment/footer :: site-footer}"></div>
-</footer>
+<footer th:replace="~{fragment/footer :: site-footer}"></footer>
 </body>
 </html>

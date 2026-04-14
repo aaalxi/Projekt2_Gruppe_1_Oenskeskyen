@@ -5,8 +5,8 @@
 }
 
 :root {
-    --primary: #9ecfff;
-    --primary-dark: #51a4fa;
+    --primary: #000000;
+    --primary-dark: #2F72B8;
     --primary-light: #EAF3FB;
     --accent: #5DD4A8;
     --accent-dark: #1D9E75;
@@ -144,7 +144,10 @@ a:hover {
 }
 
 footer {
-    margin-top: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background: var(--primary);
     border-top: 1px solid var(--border);
     padding: 1.5rem 2rem;
@@ -153,6 +156,9 @@ footer {
 
 .site-footer {
     max-width: 1000px;
+    max-height: 500px;
+    margin:0 auto;
+    width: 100%;
     margin: 0 auto;
     font-size: 0.85rem;
     color: var(--text-muted);
@@ -163,16 +169,55 @@ footer {
     margin-right: 20px;
 }
 
+.main-content-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.5;
+}
+
 .container {
     display: flex;
     justify-content: center;
     gap: 400px;
     flex-wrap: wrap;
 }
+.site-footer .container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.site-footer .box {
+    border-radius: 5px;
+    text-align: left;
+}
 
 .box {
     border-radius: 5px;
     text-align: left;
+}
+
+.login-box{
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 360px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.login-box form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.login-box button{
+    margin-top: 0.5rem;
 }
 
 .wishlist-list {
