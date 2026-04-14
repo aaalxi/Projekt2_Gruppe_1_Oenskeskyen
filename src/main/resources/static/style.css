@@ -5,7 +5,7 @@
 }
 
 :root {
-    --primary: #9ecfff;
+    --primary: #000000;
     --primary-dark: #2F72B8;
     --primary-light: #EAF3FB;
     --accent: #5DD4A8;
@@ -139,7 +139,10 @@ header {
 }
 
 footer {
-    margin-top: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background: var(--primary);
     border-top: 1px solid var(--border);
     padding: 1.5rem 2rem;
@@ -148,6 +151,9 @@ footer {
 
 .site-footer {
     max-width: 1000px;
+    max-height: 500px;
+    margin:0 auto;
+    width: 100%;
     margin: 0 auto;
     font-size: 0.85rem;
     color: var(--text-muted);
@@ -162,6 +168,12 @@ footer {
     display: flex;
     justify-content: center;
     gap: 400px;
+    flex-wrap: wrap;
+}
+.site-footer .container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
     flex-wrap: wrap;
 }
 
