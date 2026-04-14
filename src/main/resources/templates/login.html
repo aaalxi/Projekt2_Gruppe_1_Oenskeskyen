@@ -14,16 +14,17 @@
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
-<div class="main-content">
-    <h1 class="button">Login</h1>
-
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" value="Rune" required>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" value="xsw2zaq1" required>
-        <button type="submit">Login</button>
-    </form>
+<div class="main-content main-content-centered">
+    <div class="login-box">
+        <h1 class="button">Login</h1>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="Rune" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" value="xsw2zaq1" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </div>
 
 <footer th:replace="~{fragment/footer :: site-footer}"></footer>
