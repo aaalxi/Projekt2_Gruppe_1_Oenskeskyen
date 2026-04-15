@@ -15,6 +15,13 @@
     <div class="wishlist-wishes">
         <div class="wishlist-title-container">
             <h3 th:text="${wishlist.title}"></h3>
+            <div class="share-link">
+                <p>Del listen:</p>
+                <a th:href="@{/wishlist/share/{token}(token=${wishlist.shareToken})}"
+                   th:text="@{/wishlist/share/{token}(token=${wishlist.shareToken})}">
+
+                </a>
+            </div>
 
             <form th:action="@{/profile/deleteWishlist}" method="post">
                 <input type="hidden" th:name="ID" th:value="${wishlist.ID}">
