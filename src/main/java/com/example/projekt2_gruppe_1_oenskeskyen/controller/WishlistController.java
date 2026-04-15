@@ -27,14 +27,14 @@ public class WishlistController {
     WishService wishService;
 
     @GetMapping("/profile/createWishlist")
-    public String showCreateWishlist(){
+    public String showCreateWishlist() {
         return "create-wishlist";
     }
 
     @PostMapping("/profile/createWishlist")
-    public String createWishlist(@RequestParam("title") String title, HttpSession session){
+    public String createWishlist(@RequestParam("title") String title, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        Wishlist wishlist = new Wishlist(user.getId(),title,null);
+        Wishlist wishlist = new Wishlist(user.getId(), title, null);
         wishlistService.createWishlist(wishlist);
         return "redirect:/profile";
     }
@@ -42,7 +42,7 @@ public class WishlistController {
     @PostMapping("/profile/deleteWishlist")
     public String deleteWishlist(@RequestParam("ID") int id, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user == null){
+        if (user == null) {
             return "redirect:/login";
         }
 
@@ -52,13 +52,35 @@ public class WishlistController {
     }
 
     @GetMapping("/profile/wishlist/{id}")
-    public String showWishlist(@PathVariable int id, Model model){
+    public String showWishlist(@PathVariable int id, Model model) {
         Wishlist wishlist = wishlistService.findWishlistByID(id);
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
 
         return "wishlist";
+    }
+
+    @GetMapping("/wishlist/{id}/edit")
+    public String showUpdatedWishlist(@PathVariable int id, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
+
+        Wishlist wishlist = wishlistService.findWishlistByID(id);
+        model.addAttribute("wishlist", wishlist);
+
+        return "edit-wishlist";
+    }
+
+    @PostMapping("/wishlist/{id}/edit")
+    public String updateWishlist(@PathVariable int id, String sharetoken, String title, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) return "redirect:/login";
+
+        wishlistService.updateWishlist(id, title, user.getId(), sharetoken);
+        return "redirect:/wishlist/" + id;
+
     }
 
     @GetMapping("/wishlist/share/{token}")

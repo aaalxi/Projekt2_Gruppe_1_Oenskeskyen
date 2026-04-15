@@ -21,12 +21,13 @@ public class User {
     public User(){
     }
 
-    public User(int id, String username, String email, LocalDate birthday, LocalDateTime createdAt) {
+    public User(int id, String username, String email, LocalDate birthday, LocalDateTime createdAt, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.birthday = birthday;
         this.createdAt = createdAt;
+        this.password = password;
     }
 
     public int getId() {

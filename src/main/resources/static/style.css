@@ -185,6 +185,40 @@ footer {
     color: var(--text-muted);
 }
 
+.profile-info {
+    display: flex;
+}
+
+.edit-profile-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    margin-left: 1em;
+}
+
+.edit-profile-container {
+    width: 300px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-profile-container input {
+    padding: 8px;
+}
+
+.edit-profile-container button {
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
 .main-content {
     margin-left: 20px;
     margin-right: 20px;

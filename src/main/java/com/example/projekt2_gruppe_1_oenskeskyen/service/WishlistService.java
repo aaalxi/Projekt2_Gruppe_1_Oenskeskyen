@@ -5,6 +5,7 @@ import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishlistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,8 +38,20 @@ public class WishlistService {
 
     public void deleteWishlist(int wishlistID, int sessionUserID) {
         Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
-        if(wishlist != null && wishlist.getUserID() == sessionUserID){
+        if (wishlist != null && wishlist.getUserID() == sessionUserID) {
             wishlistRepo.deleteWishlistByID(wishlistID);
         }
+    }
+
+    public void updateWishlist(int wishlistID, String wishlistTitle, int userID, String sharetoken) {
+        Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
+        if (wishlist == null) {
+            throw new RuntimeException("Ønskeliste ID ikke fundet");
+        }
+        if (wishlistID != userID) {
+            throw new RuntimeException("UserID matcher ikke overens med WishlistID");
+
+        }
+        wishlistRepo.updateWishlist(wishlist);
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Ønskeliste</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+</head>
+<body>
+<header>
+    <div th:replace="~{fragment/header :: site-header}"></div>
+</header>
+
+<form th:action="@{/wishlist/{id}/edit(id=${wishlist.id})}"
+      method="post">
+    <label for="title">Indtast nyt navn på liste:</label>
+    <input type="text" id="title" name="title" th:value="${wishlist.title}" required/>
+
+    <button type="submit">Gem ændringer</button>
+    <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">Annuller</a>
+
+</form>
+
+<footer th:replace="~{fragment/footer :: site-footer}"></footer>
+</body>
+</html>
