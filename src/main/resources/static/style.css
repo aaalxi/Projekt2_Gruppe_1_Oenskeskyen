@@ -185,6 +185,17 @@ footer {
     color: var(--text-muted);
 }
 
+.profile-info {
+    display: flex;
+}
+
+.edit-profile-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    margin-left: 1em;
+}
+
 .main-content {
     margin-left: 20px;
     margin-right: 20px;
