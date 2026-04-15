@@ -30,15 +30,15 @@ VALUES(
 # wishlist dummy data
 INSERT INTO wish_list(id, user_id, title, share_token, created_at)
 VALUES(
-          1, 1, 'fødzz', 'ry82347', '2008-01-05 11:09:01'
+          1, 1, 'fødzz', NULL, '2008-01-05 11:09:01'
       );
 INSERT INTO wish_list(id, user_id, title, share_token, created_at)
 VALUES(
-          2, 2, 'øsnker', 'fnwu0n974yvvw', '2010-03-09 02:02:22'
+          2, 2, 'øsnker', NULL, '2010-03-09 02:02:22'
       );
 INSERT INTO wish_list(id, user_id, title, share_token, created_at)
 VALUES(
-          3, 3, 'randomting', 'jfwuieyr7874', '2026-07-02 03:05:59'
+          3, 3, 'randomting', NULL, '2026-07-02 03:05:59'
       );
 
 # wish dummy data
