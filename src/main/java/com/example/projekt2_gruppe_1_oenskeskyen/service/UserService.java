@@ -4,6 +4,8 @@ import com.example.projekt2_gruppe_1_oenskeskyen.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class UserService {
 
@@ -26,7 +28,14 @@ public class UserService {
         userRepo.deleteUserByUserId(user);
     }
 
-    public void updateUserByUserId(User user){
+    public void updateUserByUserId(int id, String username, String email, LocalDate birthday, String password){
+        User user = userRepo.getUserbyUserID(id);
+
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setBirthday(birthday);
+        user.setPassword(password);
+
         userRepo.updateUserByUserId(user);
     }
 }
