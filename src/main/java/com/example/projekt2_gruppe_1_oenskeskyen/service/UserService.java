@@ -21,4 +21,8 @@ public class UserService {
         }
         return null;
     }
+
+    public void deleteUserByUserId(User user) {
+        userRepo.deleteUserByUserId(user);
+    }
 }
