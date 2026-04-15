@@ -31,6 +31,10 @@ public class WishlistService {
         return wishlistRepo.findWishlistByWishlistId(ID);
     }
 
+    public Wishlist findWishlistByShareToken(String token){
+        return wishlistRepo.findWishlistByShareToken(token);
+    }
+
     public void deleteWishlist(int wishlistID, int sessionUserID) {
         Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
         if(wishlist != null && wishlist.getUserID() == sessionUserID){

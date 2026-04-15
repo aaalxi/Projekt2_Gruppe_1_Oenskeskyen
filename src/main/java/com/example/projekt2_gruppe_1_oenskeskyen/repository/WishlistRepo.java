@@ -116,4 +116,31 @@ public class WishlistRepo {
         }
         return null;
     }
+
+    public Wishlist findWishlistByShareToken(String token){
+        String sql = "SELECT * FROM wish_list WHERE share_token = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setString(1,token);
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()){
+                Wishlist wishlist = new Wishlist();
+
+                wishlist.setID(resultSet.getInt("id"));
+                wishlist.setUserID(resultSet.getInt("user_id"));
+                wishlist.setTitle(resultSet.getString("title"));
+                wishlist.setShareToken(resultSet.getString("share_token"));
+                wishlist.setCreatedAt(resultSet.getTimestamp("created_at").toLocalDateTime());
+
+                return wishlist;
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
