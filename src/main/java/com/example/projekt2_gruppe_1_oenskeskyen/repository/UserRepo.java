@@ -17,7 +17,7 @@ public class UserRepo {
     @Autowired
     DataSource dataSource;
 
-    public User getUserbyID(int id){
+    public User getUserbyUserID(int id){
         User user = null;
         String sql = "SELECT * FROM users WHERE id = ?";
 
@@ -89,7 +89,7 @@ public class UserRepo {
         }
     }
 
-    public User findByEmail(String email){
+    public User findUserByUserEmail(String email){
 
         String sql = "SELECT * FROM users WHERE email = ?";
 
@@ -117,7 +117,7 @@ public class UserRepo {
         return null;
     }
 
-    public void updateUser(User user){
+    public void updateUserUsernameByUserId(User user) {
         String sql = "UPDATE users SET username = ? WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
@@ -129,6 +129,32 @@ public class UserRepo {
             statement.executeUpdate();
 
         }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserEmailByUserId(User user) {
+        String sql = "UPDATE users SET email = ? WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, user.getEmail());
+            statement.setInt(1, user.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUserByUserId(User user) {
+        String sql = "DELETE FROM users WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setInt(1, user.getId());
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
