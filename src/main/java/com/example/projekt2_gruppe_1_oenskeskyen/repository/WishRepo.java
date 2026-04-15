@@ -117,6 +117,6 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 }

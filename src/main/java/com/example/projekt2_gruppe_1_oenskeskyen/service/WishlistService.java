@@ -42,8 +42,7 @@ public class WishlistService {
         if (wishlistID != userID) {
             throw new RuntimeException("UserID matcher ikke overens med WishlistID");
 
-        } else {
-            wishlistRepo.editWishlistName(wishlistID, newWishlistTitle);
         }
+        wishlistRepo.editWishlistName(wishlistID, newWishlistTitle);
     }
 }

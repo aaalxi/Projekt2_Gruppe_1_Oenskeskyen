@@ -69,7 +69,7 @@ public class WishlistController {
         Wishlist wishlist = wishlistService.findWishlistByID(id);
         model.addAttribute("wishlist", wishlist);
 
-        return "update-wishlist";
+        return "edit-wishlist";
     }
 
     @PostMapping("/wishlist/{id}/edit")
