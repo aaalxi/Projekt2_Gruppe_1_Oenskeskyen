@@ -3,8 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Rediger profil</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+
+<header th:replace="~{fragment/header :: site-header}"></header>
+
+<section class="edit-profile-container">
+
+    <h2>Rediger profil</h2>
+
+    <form th:action="@{/profile/edit-profile}" method="post">
+
+        <input type="hidden" name="userId" th:value="${user.id}">
+
+        <label>Brugernavn</label>
+        <input type="text" name="username" th:value="${user.username}" required>
+
+        <label>Email</label>
+        <input type="email" name="email" th:value="${user.email}" required>
+
+        <label>Fødselsdag</label>
+        <input type="date" name="birthday" th:value="${user.birthday}" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Skriv nyt password">
+
+        <button type="submit">Gem ændringer</button>
+
+    </form>
+
+    <form th:action="@{/profile/edit-profile/delete}" method="post"
+          onsubmit="return confirm('Er du sikker på, at du vil slette din profil?');">
+
+        <button type="submit" class="delete-button">
+            Slet profil
+        </button>
+
+    </form>
+</section>
+
+<footer th:replace="~{fragment/footer :: site-footer}"></footer>
 
 </body>
 </html>

@@ -88,13 +88,24 @@ public class UserController {
         return "redirect:/user-register";
     }
 
+    @GetMapping("/edit-profile")
+    public String getEditProfile(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("user", user);
+        return "edit-profile";
+    }
+
     @PostMapping("/profile/edit-profile")
     public String editProfile(@RequestParam("username") String username,
             @RequestParam("email") String email,
             @RequestParam("birthday") LocalDate birthday,
             @RequestParam("password") String password,
             @RequestParam("userId") int userId,
-            HttpSession session, Model model){
+            HttpSession session){
         User user = (User) session.getAttribute("user");
         if(user == null){
             return "redirect:/login";
@@ -103,9 +114,15 @@ public class UserController {
             return "redirect:/profile";
         }
 
+        if (password == null || password.isBlank()){
+            password = user.getPassword();
+        }
+
         userService.updateUserByUserId(userId, username, email, birthday, password);
 
-        return "redirect:/edit-profile";
+        session.setAttribute("user", userService.getUserByUserId(userId));
+
+        return "redirect:/profile";
     }
 
     /*

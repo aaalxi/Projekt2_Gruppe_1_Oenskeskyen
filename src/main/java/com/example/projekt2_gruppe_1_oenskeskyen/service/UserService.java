@@ -38,4 +38,8 @@ public class UserService {
 
         userRepo.updateUserByUserId(user);
     }
+
+    public User getUserByUserId(int id){
+        return userRepo.getUserbyUserID(id);
+    }
 }

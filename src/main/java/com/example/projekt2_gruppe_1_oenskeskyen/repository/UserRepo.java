@@ -116,11 +116,11 @@ public class UserRepo {
     }
 
     public void updateUserByUserId(User user) {
-        String sql = "UPDATE users SET password = ?, email = ?, birthday = ?, password = ? WHERE id = ?";
+        String sql = "UPDATE users SET username = ?, email = ?, birthday = ?, password = ? WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setString(1, user.getPassword());
+            statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
             Timestamp timestamp = Timestamp.valueOf(user.getBirthday().atStartOfDay()); // converting localDate to Timestamp
             statement.setTimestamp(3, timestamp);
