@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class WishlistService {
@@ -14,6 +15,10 @@ public class WishlistService {
     private WishlistRepo wishlistRepo;
 
     public void createWishlist(Wishlist w) {
+        if(w.getShareToken() == null){
+            String token = UUID.randomUUID().toString();
+            w.setShareToken(token);
+        }
         wishlistRepo.createWishlist(w);
     }
 
