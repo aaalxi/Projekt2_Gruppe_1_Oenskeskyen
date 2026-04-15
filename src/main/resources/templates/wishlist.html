@@ -16,9 +16,8 @@
         <div class="wishlist-title-container">
             <h3 th:text="${wishlist.title}"></h3>
             <div class="share-link">
-                <p>Del listen: </p>
-                <a
-                   th:text="@{/wishlist/share/{token}(token=${wishlist.shareToken})}">
+                <a th:href="@{/wishlist/share/{token}(token=${wishlist.shareToken})}">
+                    <p>Del listen </p>
                 </a>
             </div>
 
