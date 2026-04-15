@@ -77,6 +77,50 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @PostMapping("/profile/edit-profile/delete")
+    public String deleteProfile(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+
+        userService.deleteUserByUserId(user);
+        return "redirect:/user-register";
+    }
+
+    @GetMapping("/edit-profile")
+    public String getEditProfile(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("user", user);
+        return "edit-profile";
+    }
+
+    @PostMapping("/profile/edit-profile")
+    public String editProfile(@RequestParam("username") String username,
+            @RequestParam("email") String email,
+            @RequestParam("birthday") LocalDate birthday,
+            @RequestParam("password") String password,
+            @RequestParam("userId") int userId,
+            HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        if (user.getId() != userId){
+            return "redirect:/profile";
+        }
+
+        userService.updateUserByUserId(userId, username, email, birthday, password);
+
+        session.setAttribute("user", userService.getUserByUserId(userId));
+
+        return "redirect:/profile";
+    }
+
     /*
     HttpSession er en mekanisme i spring der bruges til at
     huske data mellem HTTP requests.
