@@ -14,17 +14,26 @@
 </header>
 
 <div class="main-content">
-    <form th:action="@{/wishlist/add}" method="post">
+    <form class="wish-form" th:action="@{/wishlist/add}" method="post">
         <label for="name">Navn</label>
         <input type="text" id="name" name="name" required>
         <label for="url">Link</label>
         <input type="url" id="url" name="url">
-        <label for="description">Beskrivelse</label>
-        <input type="text" id="description" name="description">
         <label for="price">Pris</label>
         <input type="number" id="price" name="price">
+        <label for="currency">Valuta</label>
+        <select id="currency" for="price" name="currency">
+            <option value="DKK" selected>DKK — Dansk krone</option>
+            <option value="EUR">EUR — Euro</option>
+            <option value="USD">USD — Amerikansk dollar</option>
+            <option value="GBP">GBP — Britisk pund</option>
+            <option value="SEK">SEK — Svensk krone</option>
+            <option value="NOK">NOK — Norsk krone</option>
+        </select>
         <label for="priority">Prioritet</label>
         <input type="number" id="priority" name="priority">
+        <label for="description">Beskrivelse</label>
+        <textarea class="wish-textarea" id="description" name="description" rows="4" cols="50"></textarea>
         <input type="hidden" th:name="id" th:value="${wishlist.ID}">
         <button type="submit">Opret ønske</button>
     </form>

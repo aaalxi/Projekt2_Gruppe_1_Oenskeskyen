@@ -10,28 +10,31 @@ public class Wish {
     private String url;
     private String description;
     private double price;
+    private String currency;
     private int priority;
     private LocalDateTime createdAt;
     //SQL script sætter selv createdAt + id,  LocalDateTime til now(), autogen. id, wishListID foreing key ikke
     //med i konstruktør
 
 
-    public Wish(String name, String url, String description, double price, int priority, int wishlistID) {
+    public Wish(String name, String url, String description, double price, String currency, int priority, int wishlistID) {
         this.name = name;
         this.url = url;
         this.description = description;
         this.price = price;
         this.priority=priority;
         this.wishlistID = wishlistID;
+        this.currency = currency;
     }
 
-    public Wish(int ID, int wishlistID, String name, String description, String url, double price, int priority, LocalDateTime createdAt) {
+    public Wish(int ID, int wishlistID, String name, String description, String url, double price, String currency, int priority, LocalDateTime createdAt) {
         this.ID = ID;
         this.wishlistID = wishlistID;
         this.name = name;
         this.description = description;
         this.url = url;
         this.price = price;
+        this.currency = currency;
         this.priority = priority;
         this.createdAt = createdAt;
     }
@@ -98,5 +101,13 @@ public class Wish {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }

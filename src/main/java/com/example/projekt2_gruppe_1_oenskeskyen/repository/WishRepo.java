@@ -20,7 +20,7 @@ public class WishRepo {
     DataSource dataSource;
 
     public void createWish (Wish wish) {
-        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, priority) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wish (wish_list_id, name, description, url, price, currency, priority) VALUES (?, ?, ?, ?, ?,?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -29,7 +29,8 @@ public class WishRepo {
             statement.setString(3, wish.getDescription());
             statement.setString(4, wish.getUrl());
             statement.setDouble(5, wish.getPrice());
-            statement.setInt(6, wish.getPriority());
+            statement.setString(6,wish.getCurrency());
+            statement.setInt(7, wish.getPriority());
 
             statement.executeUpdate();
 
@@ -56,6 +57,7 @@ public class WishRepo {
                             result.getString("description"),
                             result.getString("url"),
                             result.getDouble("price"),
+                            result.getString("currency"),
                             result.getInt("priority"),
                             result.getTimestamp("created_at").toLocalDateTime()
                     );
@@ -89,6 +91,7 @@ public class WishRepo {
                             rs.getString("description"),
                             rs.getString("url"),
                             rs.getDouble("price"),
+                            rs.getString("currency"),
                             rs.getInt("priority"),
                             rs.getTimestamp("created_at").toLocalDateTime()
                     );

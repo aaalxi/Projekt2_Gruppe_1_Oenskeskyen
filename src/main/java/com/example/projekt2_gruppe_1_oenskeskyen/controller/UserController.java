@@ -1,5 +1,4 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
-
 import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.UserService;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,7 +36,9 @@ public class UserController {
 
         User user = new User(username,email,password,birthday);
         userService.register(user);
-        session.setAttribute("user", user);
+
+        User savedUser = userService.login(username,password);
+        session.setAttribute("user", savedUser);
         return "redirect:/profile";
     }
 
