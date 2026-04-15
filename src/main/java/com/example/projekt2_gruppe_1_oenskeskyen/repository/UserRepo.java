@@ -31,7 +31,8 @@ public class UserRepo {
                             resultSet.getString("username"),
                             resultSet.getString("email"),
                             resultSet.getDate("birthday").toLocalDate(),
-                            resultSet.getTimestamp("created_at").toLocalDateTime()
+                            resultSet.getTimestamp("created_at").toLocalDateTime(),
+                            resultSet.getString("password")
                     );
                 }
             }

@@ -31,10 +31,17 @@ public class UserService {
     public void updateUserByUserId(int id, String username, String email, LocalDate birthday, String password){
         User user = userRepo.getUserbyUserID(id);
 
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
         user.setUsername(username);
         user.setEmail(email);
         user.setBirthday(birthday);
-        user.setPassword(password);
+
+        if (password != null && !password.isBlank()){
+            user.setPassword(password);
+        }
 
         userRepo.updateUserByUserId(user);
     }

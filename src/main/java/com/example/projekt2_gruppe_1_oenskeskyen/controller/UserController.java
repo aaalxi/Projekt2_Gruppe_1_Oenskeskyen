@@ -114,10 +114,6 @@ public class UserController {
             return "redirect:/profile";
         }
 
-        if (password == null || password.isBlank()){
-            password = user.getPassword();
-        }
-
         userService.updateUserByUserId(userId, username, email, birthday, password);
 
         session.setAttribute("user", userService.getUserByUserId(userId));
