@@ -30,7 +30,7 @@ VALUES(
 # wishlist dummy data
 INSERT INTO wish_list(id, user_id, title, share_token, created_at)
 VALUES(
-          1, 1, 'fødzz', 'share-fødzz', '2008-01-05 11:09:01'
+          1, 1, 'fødzz', null , '2008-01-05 11:09:01'
       );
 INSERT INTO wish_list(id, user_id, title, share_token, created_at)
 VALUES(
