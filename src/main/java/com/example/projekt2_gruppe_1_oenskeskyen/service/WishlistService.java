@@ -16,10 +16,6 @@ public class WishlistService {
     private WishlistRepo wishlistRepo;
 
     public void createWishlist(Wishlist w) {
-        if(w.getShareToken() == null){
-            String token = UUID.randomUUID().toString();
-            w.setShareToken(token);
-        }
         wishlistRepo.createWishlist(w);
     }
 
@@ -52,6 +48,12 @@ public class WishlistService {
             throw new RuntimeException("UserID matcher ikke overens med WishlistID");
 
         }
+        wishlistRepo.updateWishlist(wishlist);
+    }
+
+    public void setShareToken(int wishlistID, String token){
+        Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
+        wishlist.setShareToken(token);
         wishlistRepo.updateWishlist(wishlist);
     }
 }

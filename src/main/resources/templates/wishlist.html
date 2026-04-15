@@ -16,8 +16,13 @@
         <div class="wishlist-title-container">
             <h3 th:text="${wishlist.title}"></h3>
             <div class="share-link">
-                <a th:href="@{/wishlist/share/{token}(token=${wishlist.shareToken})}">
-                    <p>Del listen </p>
+                <form th:if="${wishlist.shareToken == null}" th:action="@{/profile/wishlist/share/{id}(id=${wishlist.ID})}" method="post">
+                    <button type="submit">Lav et delelink</button>
+                </form>
+                <a th:if="${wishlist.shareToken != null}"
+                   th:href="@{/wishlist/share/{token}(token=${wishlist.shareToken})}"
+                   target="_blank">
+                    Åbn delt liste
                 </a>
             </div>
 

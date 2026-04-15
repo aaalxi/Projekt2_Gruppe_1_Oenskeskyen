@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 @Controller
@@ -81,6 +82,23 @@ public class WishlistController {
         wishlistService.updateWishlist(id, title, user.getId(), sharetoken);
         return "redirect:/wishlist/" + id;
 
+    }
+
+    @PostMapping("/profile/wishlist/share/{id}")
+    public String setWishlistShareTokenAtShare(@PathVariable int id, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        Wishlist wishlist = wishlistService.findWishlistByID(id);
+        if(wishlist == null || wishlist.getUserID() != user.getId()){
+            return "redirect:/profile";
+        }
+
+        if(wishlist.getShareToken() == null){
+            wishlistService.setShareToken(id,UUID.randomUUID().toString());
+        }
+        return "redirect:/profile/wishlist/" + id;
     }
 
     @GetMapping("/wishlist/share/{token}")

@@ -132,8 +132,8 @@ public class WishlistRepo {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, w.getTitle());
-            statement.setInt(2, w.getID());
             statement.setString(2, w.getShareToken());
+            statement.setInt(3, w.getID());
             statement.executeUpdate();
 
         } catch (SQLException e) {
