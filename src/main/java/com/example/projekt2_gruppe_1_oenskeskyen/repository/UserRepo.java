@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
 import static java.sql.Date.valueOf;
 
 @Repository
@@ -117,43 +115,17 @@ public class UserRepo {
         return null;
     }
 
-    public void updateUserUsernameByUserId(User user) {
-        String sql = "UPDATE users SET username = ? WHERE id = ?";
-
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
-
-            statement.setString(1, user.getUsername());
-            statement.setInt(2, user.getId());
-
-            statement.executeUpdate();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void updateUserEmailByUserId(User user) {
-        String sql = "UPDATE users SET email = ? WHERE id = ?";
-
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setString(1, user.getEmail());
-            statement.setInt(2, user.getId());
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateUserPasswordByUserId(User user) {
-        String sql = "UPDATE users SET password = ? WHERE id = ?";
+    public void updateUserByUserId(User user) {
+        String sql = "UPDATE users SET password = ?, email = ?, birthday = ?, password = ? WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, user.getPassword());
-            statement.setInt(2, user.getId());
+            statement.setString(2, user.getEmail());
+            Timestamp timestamp = Timestamp.valueOf(user.getBirthday().atStartOfDay()); // converting localDate to Timestamp
+            statement.setTimestamp(3, timestamp);
+            statement.setString(4, user.getPassword());
+            statement.setInt(5, user.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
