@@ -77,7 +77,7 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @PostMapping("/profile/edit/delete")
+    @PostMapping("/profile/edit-profile/delete")
     public String deleteProfile(HttpSession session){
         User user = (User) session.getAttribute("user");
         if(user == null){
@@ -86,6 +86,26 @@ public class UserController {
 
         userService.deleteUserByUserId(user);
         return "redirect:/user-register";
+    }
+
+    @PostMapping("/profile/edit-profile")
+    public String editProfile(@RequestParam("username") String username,
+            @RequestParam("email") String email,
+            @RequestParam("birthday") LocalDate birthday,
+            @RequestParam("password") String password,
+            @RequestParam("userId") int userId,
+            HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        if (user.getId() != userId){
+            return "redirect:/profile";
+        }
+
+        userService.updateUserByUserId(userId, username, email, birthday, password);
+
+        return "redirect:/edit-profile";
     }
 
     /*
