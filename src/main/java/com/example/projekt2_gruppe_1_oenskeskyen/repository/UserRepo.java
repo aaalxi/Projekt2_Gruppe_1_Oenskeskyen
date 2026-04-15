@@ -139,7 +139,21 @@ public class UserRepo {
         try(Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, user.getEmail());
-            statement.setInt(1, user.getId());
+            statement.setInt(2, user.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserPasswordByUserId(User user) {
+        String sql = "UPDATE users SET password = ? WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, user.getPassword());
+            statement.setInt(2, user.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -154,6 +168,8 @@ public class UserRepo {
             PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setInt(1, user.getId());
+
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
