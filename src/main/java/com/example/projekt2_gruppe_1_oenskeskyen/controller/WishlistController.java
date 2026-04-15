@@ -62,7 +62,7 @@ public class WishlistController {
     }
 
     @GetMapping("/wishlist/{id}/edit")
-    public String showUpdateWishlist(@PathVariable int id, HttpSession session, Model model) {
+    public String showUpdatedWishlist(@PathVariable int id, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         if (user == null) return "redirect:/login";
 
@@ -73,12 +73,12 @@ public class WishlistController {
     }
 
     @PostMapping("/wishlist/{id}/edit")
-    public String updateWishlistName(@PathVariable int id, String title, HttpSession session, Model model) {
+    public String updateWishlist(@PathVariable int id, String sharetoken, String title, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
         if (user == null) return "redirect:/login";
 
-        wishlistService.updateWishlistName(id, title, user.getId());
+        wishlistService.updateWishlist(id, title, user.getId(), sharetoken);
         return "redirect:/wishlist/" + id;
 
     }

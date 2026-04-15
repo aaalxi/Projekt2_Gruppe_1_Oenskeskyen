@@ -34,7 +34,7 @@ public class WishlistService {
         }
     }
 
-    public void updateWishlistName(int wishlistID, String newWishlistTitle, int userID) {
+    public void updateWishlist(int wishlistID, String wishlistTitle, int userID, String sharetoken) {
         Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
         if (wishlist == null) {
             throw new RuntimeException("Ønskeliste ID ikke fundet");
@@ -43,6 +43,6 @@ public class WishlistService {
             throw new RuntimeException("UserID matcher ikke overens med WishlistID");
 
         }
-        wishlistRepo.editWishlistName(wishlistID, newWishlistTitle);
+        wishlistRepo.updateWishlist(wishlist);
     }
 }

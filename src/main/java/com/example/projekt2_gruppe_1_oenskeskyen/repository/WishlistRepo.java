@@ -71,23 +71,6 @@ public class WishlistRepo {
         }
     }
 
-    public void updateWishlist(Wishlist w) {
-        String sql = "UPDATE wish_list SET title = ?, share_token = ? WHERE id = ?";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, w.getTitle());
-            statement.setString(2, w.getShareToken());
-            statement.setInt(3, w.getID());
-
-            statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Wishlist findWishlistByWishlistId(int ID) {
         String sql = "SELECT * FROM wish_list WHERE id = ?";
 
@@ -115,15 +98,15 @@ public class WishlistRepo {
         return null;
     }
 
-    public void editWishlistName(int ID, String updatedWishlistTitle) {
-//        String title = "SELECT title FROM wish_list WHERE id = ?";
-        String sql = "UPDATE wish_list SET title = ? WHERE id = ?";
+    public void updateWishlist(Wishlist w) {
+        String sql = "UPDATE wish_list SET title = ?, share_token = ? WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, updatedWishlistTitle);
-            statement.setInt(2, ID);
+            statement.setString(1, w.getTitle());
+            statement.setInt(2, w.getID());
+            statement.setString(2, w.getShareToken());
             statement.executeUpdate();
 
         } catch (SQLException e) {
