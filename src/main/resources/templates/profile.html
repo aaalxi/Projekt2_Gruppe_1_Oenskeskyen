@@ -46,7 +46,8 @@
                 </div>
             </a>
 
-            <form th:action="@{/profile/deleteWishlist}" method="post">
+            <form th:action="@{/profile/deleteWishlist}" method="post"
+                  onsubmit="return confirm('Er du sikker på, at du vil slette din ønskeliste?');">
                 <input type="hidden" th:name="ID" th:value="${list.ID}">
                 <button type="submit" class="delete-button">Slet liste</button>
             </form>

@@ -19,7 +19,6 @@
             <div class="wish-individual" th:each="wish : ${wishes}">
                 <strong><p id="black" th:text="${wish.getName()}"></p></strong>
                 <p th:text="${wish.getPrice()+wish.getCurrency()}"></p>
-                <!-- denne side er ikke færdig endnu -->
             </div>
         </div>
     </div>
