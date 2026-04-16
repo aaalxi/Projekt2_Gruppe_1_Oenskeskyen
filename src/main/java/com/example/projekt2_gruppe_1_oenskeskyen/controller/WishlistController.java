@@ -110,14 +110,18 @@ public class WishlistController {
     }
 
     @GetMapping("/wishlist/share/{token}")
-    public String showSharedWishlist(@PathVariable String token, Model model){
+    public String showSharedWishlist(@PathVariable String token, Model model, HttpSession session){
         Wishlist wishlist = wishlistService.findWishlistByShareToken(token);
         if(wishlist == null){
             return "redirect:/login";
         }
+
+        User user = (User) session.getAttribute("user");
+        boolean canReserve = user != null && wishlist.getUserID() != user.getId();
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
+        model.addAttribute("canReserve", canReserve);
 
         return "shared-wishlist";
     }
