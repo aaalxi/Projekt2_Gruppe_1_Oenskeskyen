@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.time.LocalDateTime;
 
 @Controller
 public class WishController {
@@ -22,8 +24,6 @@ public class WishController {
 
     @Autowired
     WishlistService wishlistService;
-    @Autowired
-    private WishRepo wishRepo;
 
     @GetMapping("/wishlist/add")
     public String getAddWishHTML(@RequestParam("id") int id, Model model) {
@@ -60,14 +60,14 @@ public class WishController {
     }
 
     @GetMapping("/wish/update")
-    public String editWish(@RequestParam("ID") int ID, Model model) {
-        Wish wish = wishService.findWishByWishId(ID);
+    public String editWish(@RequestParam("id")int id, Model model) {
+        Wish wish = wishService.findWishByWishId(id);
         model.addAttribute("wish", wish);
         return "update-wish";
     }
 
     @PostMapping("/wish/update")
-    public String editWish(@RequestParam("id") int ID,
+    public String editWish(@RequestParam("id") int id,
                            @RequestParam("wishlistID") int wishlistID,
                            @RequestParam("name") String name,
                            @RequestParam("url") String url,
@@ -75,8 +75,8 @@ public class WishController {
                            @RequestParam("price") double price,
                            @RequestParam("currency") String currency,
                            @RequestParam("priority") int priority) {
-        Wish wish = new Wish(name, url, description, price, currency, priority, wishlistID);
+        Wish wish = new Wish(id, wishlistID, name, description, url, price, currency, priority, null);
         wishService.updateWish(wish);
-        return "redirect:/profile/wishlist/" + ID;
+        return "redirect:/profile/wishlist/" + wishlistID;
     }
 }

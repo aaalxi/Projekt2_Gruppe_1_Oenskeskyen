@@ -122,7 +122,7 @@ public class WishRepo {
         String sql = "UPDATE wish SET name = ?, description = ?, url = ?, price = ?, currency = ?, priority = ? WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setString(1, wish.getWishName());
+            statement.setString(1, wish.getName());
             statement.setString(2, wish.getDescription());
             statement.setString(3, wish.getUrl());
             statement.setDouble(4, wish.getPrice());

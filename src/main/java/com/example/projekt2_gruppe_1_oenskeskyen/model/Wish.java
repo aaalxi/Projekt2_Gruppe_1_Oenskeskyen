@@ -54,11 +54,11 @@ public class Wish {
         this.wishlistID = wishListID;
     }
 
-    public String getWishName() {
+    public String getName() {
         return name;
     }
 
-    public void setWishName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

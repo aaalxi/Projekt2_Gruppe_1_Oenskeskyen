@@ -13,25 +13,38 @@
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 <body>
-
 <div class = "main-content">
     <h2>Ændring af ønske</h2>
 
-<form th:action="@{/wish/edit}" method="post">
-    <input type="hidden" name="ID" th:value="wish.ID">
+<form class = "wish-form" th:action="@{/wish/update}" method="post">
 
+    <input type="hidden" name="id" th:value="${wish.ID}"/>
 
+    <input type="hidden" name="wishlistID" th:value="${wish.wishlistID}"/>
+    <label>Navn</label>
+
+    <input type="text" name="name" placeholder="Rediger navn" th:value="${wish.name}">
+    <label>Beskrivelse</label>
+    <input type="text" name="description" placeholder="Rediger beskrivelse" th:value="${wish.description}">
+
+    <label>Link</label>
+    <input type="text" name="url" placeholder="Rediger link" th:value="${wish.url}">
+
+    <label>Pris</label>
+    <input type="number" name="price" placeholder="Rediger pris" th:value="${wish.price}">
+
+    <label>Valuta</label>
+    <input type="text" name="currency" placeholder="Rediger valuta" th:value="${wish.currency}">
+
+    <label>Priority</label>
+    <input type="number" name="priority" placeholder="Rediger prioritet" th:value="${wish.priority}">
+
+    <button type="submit">Gem</button>
 </form>
 
 
-
-
-
-
-
-
 </div>
-
+<footer th:replace="~{fragment/footer :: site-footer}"></footer>
 </body>
 </html>
 
