@@ -180,7 +180,6 @@ footer {
     max-height: 500px;
     margin:0 auto;
     width: 100%;
-    margin: 0 auto;
     font-size: 0.85rem;
     color: var(--text-muted);
 }
@@ -319,7 +318,6 @@ footer {
     display: flex;
     flex-direction: column;
     height: 100%;
-
 }
 
 .wishlist-individual a {
@@ -338,6 +336,15 @@ footer {
 
 .wishlist-button {
     padding-top: 2em;
+}
+
+.wish-button-container {
+    display: flex;
+    gap: 1em;
+}
+
+.edit-button-container button {
+    background-color: #4CAF50 !important;
 }
 
 .share-link{
