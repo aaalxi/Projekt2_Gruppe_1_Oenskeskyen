@@ -1,6 +1,5 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Wish {

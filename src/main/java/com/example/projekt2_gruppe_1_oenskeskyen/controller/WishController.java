@@ -3,6 +3,7 @@ package com.example.projekt2_gruppe_1_oenskeskyen.controller;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wish;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
+import com.example.projekt2_gruppe_1_oenskeskyen.repository.WishRepo;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishService;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.time.LocalDateTime;
 
 @Controller
 public class WishController {
@@ -24,7 +26,7 @@ public class WishController {
     WishlistService wishlistService;
 
     @GetMapping("/wishlist/add")
-    public String getAddWishHTML(@RequestParam("id") int id, Model model){
+    public String getAddWishHTML(@RequestParam("id") int id, Model model) {
 
         Wishlist wishlist = wishlistService.findWishlistByID(id);
         model.addAttribute("wishlist", wishlist);
@@ -33,15 +35,15 @@ public class WishController {
 
     @PostMapping("/wishlist/add")
     public String addWishToWishlist(@RequestParam("name") String name,
-                                   @RequestParam("url") String url,
-                                   @RequestParam("description") String description,
-                                   @RequestParam("price") double price,
+                                    @RequestParam("url") String url,
+                                    @RequestParam("description") String description,
+                                    @RequestParam("price") double price,
                                     @RequestParam("currency") String currency,
-                                   @RequestParam("priority") int priority,
+                                    @RequestParam("priority") int priority,
                                     @RequestParam("id") int wishlistId) {
         Wish wish = new Wish(name, url, description, price, currency, priority, wishlistId);
         wishService.createWish(wish);
-        return  "redirect:/profile/wishlist/" + wishlistId;
+        return "redirect:/profile/wishlist/" + wishlistId;
     }
 
     @PostMapping("/wishlist/delete")
@@ -49,11 +51,32 @@ public class WishController {
                                          @RequestParam("wishlistId") int wishlistId,
                                          HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user == null){
+        if (user == null) {
             return "redirect:/login";
         }
         wishService.deleteWishByWishId(wishId, user.getId());
 
         return "redirect:/profile/wishlist/" + wishlistId;
+    }
+
+    @GetMapping("/wish/update")
+    public String editWish(@RequestParam("wishId")int id, Model model) {
+        Wish wish = wishService.findWishByWishId(id);
+        model.addAttribute("wish", wish);
+        return "update-wish";
+    }
+
+    @PostMapping("/wish/update")
+    public String editWish(@RequestParam("id") int id,
+                           @RequestParam("wishlistID") int wishlistID,
+                           @RequestParam("name") String name,
+                           @RequestParam("url") String url,
+                           @RequestParam("description") String description,
+                           @RequestParam("price") double price,
+                           @RequestParam("currency") String currency,
+                           @RequestParam("priority") int priority) {
+        Wish wish = new Wish(id, wishlistID, name, description, url, price, currency, priority, null);
+        wishService.updateWish(wish);
+        return "redirect:/profile/wishlist/" + wishlistID;
     }
 }

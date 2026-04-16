@@ -38,11 +38,18 @@
                 <strong><p id="black" th:text="${wish.getName()}"></p></strong>
                 <p th:text="${wish.getPrice()+wish.getCurrency()}"></p>
 
-                <form class="delete-button-container" th:action="@{/wishlist/delete}" method="post">
-                    <input type="hidden" th:name="wishId" th:value="${wish.ID}">
-                    <input type="hidden" th:name="wishlistId" th:value="${wishlist.ID}">
-                    <button class="delete-button" type="submit">Slet ønske</button>
-                </form>
+                <div class="wish-button-container">
+                    <form class="edit-button-container" th:action="@{/wish/update}" method="get">
+                        <input type="hidden" th:name="wishId" th:value="${wish.ID}">
+                        <button class="delete-button" type="submit">Rediger ønske</button>
+                    </form>
+
+                    <form class="delete-button-container" th:action="@{/wishlist/delete}" method="post">
+                        <input type="hidden" th:name="wishId" th:value="${wish.ID}">
+                        <input type="hidden" th:name="wishlistId" th:value="${wishlist.ID}">
+                        <button class="delete-button" type="submit">Slet ønske</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -117,6 +117,25 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+}
+    public void updateWishById (Wish wish) {
+        String sql = "UPDATE wish SET name = ?, description = ?, url = ?, price = ?, currency = ?, priority = ? WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, wish.getName());
+            statement.setString(2, wish.getDescription());
+            statement.setString(3, wish.getUrl());
+            statement.setDouble(4, wish.getPrice());
+            statement.setString(5, wish.getCurrency());
+            statement.setInt(6, wish.getPriority());
+            statement.setInt(7, wish.getID());
 
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }
