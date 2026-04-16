@@ -14,17 +14,17 @@ public class WishlistRepo {
     @Autowired
     DataSource dataSource;
 
-    public ArrayList<Wishlist> getWishlistsbyUserID(int userID){
+    public ArrayList<Wishlist> getWishlistsbyUserID(int userID) {
         ArrayList<Wishlist> list = new ArrayList<>();
         String sql = "SELECT * FROM wish_list WHERE user_id = ?";
 
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, userID);
 
-            try (ResultSet rs = statement.executeQuery()){
-                while (rs.next()){
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
                     Wishlist wishlist = new Wishlist(
                             rs.getInt("id"),
                             rs.getInt("user_id"),
@@ -35,68 +35,76 @@ public class WishlistRepo {
                     list.add(wishlist);
                 }
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return list;
     }
 
-    public void deleteWishlistByID(int id){
+    public void deleteWishlistByID(int id) {
         String sql = "DELETE FROM wish_list WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
             statement.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void createWishlist (Wishlist w){
+    public void createWishlist(Wishlist w) {
         String sql = "INSERT INTO wish_list (user_id, title, share_token) VALUES (?, ?, ?)";
 
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql)){
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1,w.getUserID());
-            statement.setString(2,w.getTitle());
+            statement.setInt(1, w.getUserID());
+            statement.setString(2, w.getTitle());
             statement.setString(3, w.getShareToken());
             statement.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateWishlist (Wishlist w){
-        String sql = "UPDATE wish_list SET title = ?, share_token = ? WHERE id = ?";
-
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql)){
-
-            statement.setString(1, w.getTitle());
-            statement.setString(2,w.getShareToken());
-            statement.setInt(3, w.getID());
-
-            statement.executeUpdate();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    public Wishlist findWishlistByWishlistId (int ID){
+    public Wishlist findWishlistByWishlistId(int ID) {
         String sql = "SELECT * FROM wish_list WHERE id = ?";
 
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, ID);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                Wishlist wishlist = new Wishlist();
+
+                wishlist.setID(resultSet.getInt("id"));
+                wishlist.setUserID(resultSet.getInt("user_id"));
+                wishlist.setTitle(resultSet.getString("title"));
+                wishlist.setShareToken(resultSet.getString("share_token"));
+                wishlist.setCreatedAt(resultSet.getTimestamp("created_at").toLocalDateTime());
+
+                return wishlist;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Wishlist findWishlistByShareToken(String token){
+        String sql = "SELECT * FROM wish_list WHERE share_token = ?";
+
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
 
-            statement.setInt(1,ID);
+            statement.setString(1,token);
             ResultSet resultSet = statement.executeQuery();
 
             if(resultSet.next()){
@@ -116,4 +124,21 @@ public class WishlistRepo {
         }
         return null;
     }
+
+    public void updateWishlist(Wishlist w) {
+        String sql = "UPDATE wish_list SET title = ?, share_token = ? WHERE id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, w.getTitle());
+            statement.setString(2, w.getShareToken());
+            statement.setInt(3, w.getID());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

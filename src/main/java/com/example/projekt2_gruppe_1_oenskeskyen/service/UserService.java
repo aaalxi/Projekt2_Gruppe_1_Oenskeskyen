@@ -4,6 +4,8 @@ import com.example.projekt2_gruppe_1_oenskeskyen.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class UserService {
 
@@ -20,5 +22,31 @@ public class UserService {
             return user;
         }
         return null;
+    }
+
+    public void deleteUserByUserId(User user) {
+        userRepo.deleteUserByUserId(user);
+    }
+
+    public void updateUserByUserId(int id, String username, String email, LocalDate birthday, String password){
+        User user = userRepo.getUserbyUserID(id);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setBirthday(birthday);
+
+        if (password != null && !password.isBlank()){
+            user.setPassword(password);
+        }
+
+        userRepo.updateUserByUserId(user);
+    }
+
+    public User getUserByUserId(int id){
+        return userRepo.getUserbyUserID(id);
     }
 }

@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
 import static java.sql.Date.valueOf;
 
 @Repository
@@ -17,7 +15,7 @@ public class UserRepo {
     @Autowired
     DataSource dataSource;
 
-    public User getUserbyID(int id){
+    public User getUserbyUserID(int id){
         User user = null;
         String sql = "SELECT * FROM users WHERE id = ?";
 
@@ -33,7 +31,8 @@ public class UserRepo {
                             resultSet.getString("username"),
                             resultSet.getString("email"),
                             resultSet.getDate("birthday").toLocalDate(),
-                            resultSet.getTimestamp("created_at").toLocalDateTime()
+                            resultSet.getTimestamp("created_at").toLocalDateTime(),
+                            resultSet.getString("password")
                     );
                 }
             }
@@ -89,7 +88,7 @@ public class UserRepo {
         }
     }
 
-    public User findByEmail(String email){
+    public User findUserByUserEmail(String email){
 
         String sql = "SELECT * FROM users WHERE email = ?";
 
@@ -117,18 +116,34 @@ public class UserRepo {
         return null;
     }
 
-    public void updateUser(User user){
-        String sql = "UPDATE users SET username = ? WHERE id = ?";
+    public void updateUserByUserId(User user) {
+        String sql = "UPDATE users SET username = ?, email = ?, birthday = ?, password = ? WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
-
+            PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, user.getUsername());
-            statement.setInt(2, user.getId());
+            statement.setString(2, user.getEmail());
+            Timestamp timestamp = Timestamp.valueOf(user.getBirthday().atStartOfDay()); // converting localDate to Timestamp
+            statement.setTimestamp(3, timestamp);
+            statement.setString(4, user.getPassword());
+            statement.setInt(5, user.getId());
 
             statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-        }catch (SQLException e){
+    public void deleteUserByUserId(User user) {
+        String sql = "DELETE FROM users WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setInt(1, user.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

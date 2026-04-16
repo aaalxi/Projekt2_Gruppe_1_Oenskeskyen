@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Delt ønskeliste</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+</head>
+<body>
+
+<div class="main-content">
+    <div class="wishlist-wishes">
+        <div class="wishlist-title-container">
+            <h3 th:text="${wishlist.title}"></h3>
+
+        </div>
+
+        <div class="wishlist-list">
+            <div class="wish-individual" th:each="wish : ${wishes}">
+                <p><strong th:text="${wish.getName()}"></strong></p>
+                <p th:text="${wish.getPrice()+wish.getCurrency()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragment/footer :: site-footer}"></footer>
+</body>
+</html>

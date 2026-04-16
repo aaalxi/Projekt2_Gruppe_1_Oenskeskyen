@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="stylesheet" th:href="@{/header.css}">
-    <link rel="stylesheet" th:href="@{/footer.css}">
     <title>Din profil</title>
     <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
 </head>
@@ -16,12 +14,18 @@
 <div class="main-content">
     <h1>Min profil</h1>
 
-    <section>
-        <p>Brugernavn: <span th:text="${session.user.username}"></span></p>
-        <p>Email: <span th:text="${session.user.email}"></span></p>
-        <p>Fødselsdag: <span th:text="${session.user.birthday}"></span></p>
+    <section class="profile-info">
+        <div>
+            <p>Brugernavn: <span th:text="${session.user.username}"></span></p>
+            <p>Email: <span th:text="${session.user.email}"></span></p>
+            <p>Fødselsdag: <span th:text="${session.user.birthday}"></span></p>
+        </div>
+        <div class="edit-profile-btn-container">
+            <a th:href="@{/edit-profile}">
+                <button>ændre profil</button>
+            </a>
+        </div>
     </section>
-
 </div>
 
 <div class="main-content">
@@ -42,7 +46,8 @@
                 </div>
             </a>
 
-            <form th:action="@{/profile/deleteWishlist}" method="post">
+            <form th:action="@{/profile/deleteWishlist}" method="post"
+                  onsubmit="return confirm('Er du sikker på, at du vil slette din ønskeliste?');">
                 <input type="hidden" th:name="ID" th:value="${list.ID}">
                 <button type="submit" class="delete-button">Slet liste</button>
             </form>
