@@ -44,7 +44,7 @@ public class WishlistService {
         if (wishlist == null) {
             throw new RuntimeException("Ønskeliste ID ikke fundet");
         }
-        if (wishlistID != userID) {
+        if (wishlist.getUserID() != userID) {
             throw new RuntimeException("UserID matcher ikke overens med WishlistID");
 
         }

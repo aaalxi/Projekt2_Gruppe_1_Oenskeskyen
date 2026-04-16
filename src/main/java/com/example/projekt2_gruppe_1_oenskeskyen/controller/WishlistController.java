@@ -53,12 +53,20 @@ public class WishlistController {
     }
 
     @GetMapping("/profile/wishlist/{id}")
-    public String showWishlist(@PathVariable int id, Model model) {
+    public String showWishlist(@PathVariable int id, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+
         Wishlist wishlist = wishlistService.findWishlistByID(id);
+        if(wishlist == null || wishlist.getUserID() != user.getId()){
+            return "redirect:/profile";
+        }
+
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
-
         return "wishlist";
     }
 
