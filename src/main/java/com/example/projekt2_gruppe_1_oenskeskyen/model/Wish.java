@@ -1,6 +1,5 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Wish {
@@ -55,11 +54,11 @@ public class Wish {
         this.wishlistID = wishListID;
     }
 
-    public String getName() {
+    public String getWishName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setWishName(String name) {
         this.name = name;
     }
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
+    <title>Edit wish</title>
+    <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
+</head>
+
+<header>
+    <div th:replace="~{fragment/header :: site-header}"></div>
+</header>
+<body>
+
+<div class = "main-content">
+    <h2>Ændring af ønske</h2>
+
+<form th:action="@{/wish/edit}" method="post">
+    <input type="hidden" name="ID" th:value="wish.ID">
+
+
+</form>
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+

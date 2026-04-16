@@ -49,4 +49,8 @@ public class WishService {
     public ArrayList<Wish> getWishesByWishlistID(int id) {
         return wishRepo.getWishesByWishlistID(id);
     }
+
+    public void updateWish(Wish wish) {
+        wishRepo.updateWishById(wish);
+    }
 }

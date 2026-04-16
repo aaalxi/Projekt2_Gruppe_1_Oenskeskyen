@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 
 @Repository
 public class WishRepo {
@@ -25,7 +24,7 @@ public class WishRepo {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, wish.getWishListID());
-            statement.setString(2, wish.getName());   //skal stemme overens med række i parameteroverførsel
+            statement.setString(2, wish.getWishName());   //skal stemme overens med række i parameteroverførsel
             statement.setString(3, wish.getDescription());
             statement.setString(4, wish.getUrl());
             statement.setDouble(5, wish.getPrice());
@@ -119,4 +118,23 @@ public class WishRepo {
         }
     }
 
+    public void updateWishById (Wish wish) {
+        String sql = "UPDATE wish SET name = ?, description = ?, url = ?, price = ?, currency = ?, priority = ? WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, wish.getWishName());
+            statement.setString(2, wish.getDescription());
+            statement.setString(3, wish.getUrl());
+            statement.setDouble(4, wish.getPrice());
+            statement.setString(5, wish.getCurrency());
+            statement.setInt(6, wish.getPriority());
+            statement.setInt(7, wish.getID());
+
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

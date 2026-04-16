@@ -3,10 +3,10 @@ USE oenskeskyen;
 # uncomment linjerne under, kør dem og recomment dem
 # gå ind i databaseScript.sql, kør det en enkelt gang, kom tilbage og kør dette script igen
 ##########################################################################################
-# DROP TABLE IF EXISTS reservation;
-# DROP TABLE IF EXISTS wish;
-# DROP TABLE IF EXISTS wish_list;
-# DROP TABLE IF EXISTS users;
+#DROP TABLE IF EXISTS reservation;
+#DROP TABLE IF EXISTS wish;
+#DROP TABLE IF EXISTS wish_list;
+#DROP TABLE IF EXISTS users;
 ##########################################################################################
 
 # users dummy data
