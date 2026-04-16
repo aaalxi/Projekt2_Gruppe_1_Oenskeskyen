@@ -60,7 +60,7 @@ public class WishController {
     }
 
     @GetMapping("/wish/update")
-    public String editWish(@RequestParam("id")int id, Model model) {
+    public String editWish(@RequestParam("wishId")int id, Model model) {
         Wish wish = wishService.findWishByWishId(id);
         model.addAttribute("wish", wish);
         return "update-wish";

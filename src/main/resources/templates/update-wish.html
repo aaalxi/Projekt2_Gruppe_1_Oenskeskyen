@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/style.css}">
-    <link rel="stylesheet" th:href="@{/header.css}">
-    <link rel="stylesheet" th:href="@{/footer.css}">
     <title>Edit wish</title>
     <link rel="icon" th:href="@{/img/oenskelogosvg.svg}" type="image/svg">
 </head>
@@ -16,31 +14,31 @@
 <div class = "main-content">
     <h2>Ændring af ønske</h2>
 
-<form class = "wish-form" th:action="@{/wish/update}" method="post">
+    <form class = "wish-form" th:action="@{/wish/update}" method="post">
 
-    <input type="hidden" name="id" th:value="${wish.ID}"/>
-    <input type="hidden" name="wishlistID" th:value="${wish.wishListID}"/>
+        <input type="hidden" name="id" th:value="${wish.ID}"/>
+        <input type="hidden" name="wishlistID" th:value="${wish.wishListID}"/>
 
-    <label>Navn</label>
-    <input type="text" name="name" placeholder="Rediger navn" th:value="${wish.name}">
+        <label>Navn</label>
+        <input type="text" name="name" placeholder="Rediger navn" th:value="${wish.name}">
 
-    <label>Beskrivelse</label>
-    <input type="text" name="description" placeholder="Rediger beskrivelse" th:value="${wish.description}">
+        <label>Beskrivelse</label>
+        <input type="text" name="description" placeholder="Rediger beskrivelse" th:value="${wish.description}">
 
-    <label>Link</label>
-    <input type="text" name="url" placeholder="Rediger link" th:value="${wish.url}">
+        <label>Link</label>
+        <input type="text" name="url" placeholder="Rediger link" th:value="${wish.url}">
 
-    <label>Pris</label>
-    <input type="number" name="price" placeholder="Rediger pris" th:value="${wish.price}">
+        <label>Pris</label>
+        <input type="number" name="price" placeholder="Rediger pris" th:value="${wish.price}">
 
-    <label>Valuta</label>
-    <input type="text" name="currency" placeholder="Rediger valuta" th:value="${wish.currency}">
+        <label>Valuta</label>
+        <input type="text" name="currency" placeholder="Rediger valuta" th:value="${wish.currency}">
 
-    <label>Priority</label>
-    <input type="number" name="priority" placeholder="Rediger prioritet" th:value="${wish.priority}">
+        <label>Priority</label>
+        <input type="number" name="priority" placeholder="Rediger prioritet" th:value="${wish.priority}">
 
-    <button type="submit">Gem</button>
-</form>
+        <button type="submit">Gem</button>
+    </form>
 
 
 </div>
