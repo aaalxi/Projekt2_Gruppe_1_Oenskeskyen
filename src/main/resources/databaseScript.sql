@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS wish
     FOREIGN KEY (wish_list_id) REFERENCES wish_list (id) ON DELETE CASCADE,
 
     name         VARCHAR(255)   NOT NULL,
-    description  VARCHAR(500)   NULL,
-    url          VARCHAR(1000)  NULL,
+    description  VARCHAR(255)   NULL,
+    url          VARCHAR(255)  NULL,
     price        DECIMAL(10, 2) NULL,
     currency     VARCHAR(3)     NOT Null,
     priority     INT NULL CHECK (priority BETWEEN 1 AND 5),
