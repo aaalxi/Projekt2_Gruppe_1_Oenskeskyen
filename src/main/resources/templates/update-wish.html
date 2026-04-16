@@ -19,11 +19,11 @@
 <form class = "wish-form" th:action="@{/wish/update}" method="post">
 
     <input type="hidden" name="id" th:value="${wish.ID}"/>
+    <input type="hidden" name="wishlistID" th:value="${wish.wishListID}"/>
 
-    <input type="hidden" name="wishlistID" th:value="${wish.wishlistID}"/>
     <label>Navn</label>
-
     <input type="text" name="name" placeholder="Rediger navn" th:value="${wish.name}">
+
     <label>Beskrivelse</label>
     <input type="text" name="description" placeholder="Rediger beskrivelse" th:value="${wish.description}">
 
