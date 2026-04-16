@@ -28,7 +28,7 @@ public class WishlistService {
         return wishlistRepo.findWishlistByWishlistId(ID);
     }
 
-    public Wishlist findWishlistByShareToken(String token){
+    public Wishlist findWishlistByShareToken(String token) {
         return wishlistRepo.findWishlistByShareToken(token);
     }
 
@@ -46,12 +46,12 @@ public class WishlistService {
         }
         if (wishlist.getUserID() != userID) {
             throw new RuntimeException("UserID matcher ikke overens med WishlistID");
-
         }
+        wishlist.setTitle(wishlistTitle);
         wishlistRepo.updateWishlist(wishlist);
     }
 
-    public void setShareToken(int wishlistID, String token){
+    public void setShareToken(int wishlistID, String token) {
         Wishlist wishlist = wishlistRepo.findWishlistByWishlistId(wishlistID);
         wishlist.setShareToken(token);
         wishlistRepo.updateWishlist(wishlist);

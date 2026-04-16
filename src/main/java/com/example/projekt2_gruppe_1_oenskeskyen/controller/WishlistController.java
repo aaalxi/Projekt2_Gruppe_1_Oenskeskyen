@@ -55,12 +55,12 @@ public class WishlistController {
     @GetMapping("/profile/wishlist/{id}")
     public String showWishlist(@PathVariable int id, Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user == null){
+        if (user == null) {
             return "redirect:/login";
         }
 
         Wishlist wishlist = wishlistService.findWishlistByID(id);
-        if(wishlist == null || wishlist.getUserID() != user.getId()){
+        if (wishlist == null || wishlist.getUserID() != user.getId()) {
             return "redirect:/profile";
         }
 
@@ -71,7 +71,7 @@ public class WishlistController {
     }
 
     @GetMapping("/wishlist/{id}/edit")
-    public String showUpdatedWishlist(@PathVariable int id, HttpSession session, Model model) {
+    public String showUpdateWishlist(@PathVariable int id, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         if (user == null) return "redirect:/login";
 
@@ -82,37 +82,36 @@ public class WishlistController {
     }
 
     @PostMapping("/wishlist/{id}/edit")
-    public String updateWishlist(@PathVariable int id, String sharetoken, String title, HttpSession session, Model model) {
+    public String updateWishlist(@PathVariable int id, @RequestParam(required = false) String sharetoken, @RequestParam String title, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
         if (user == null) return "redirect:/login";
-
         wishlistService.updateWishlist(id, title, user.getId(), sharetoken);
-        return "redirect:/wishlist/" + id;
 
+        return "redirect:/profile/wishlist/" + id;
     }
 
     @PostMapping("/profile/wishlist/share/{id}")
-    public String setWishlistShareTokenAtShare(@PathVariable int id, HttpSession session){
+    public String setWishlistShareTokenAtShare(@PathVariable int id, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user == null){
+        if (user == null) {
             return "redirect:/login";
         }
         Wishlist wishlist = wishlistService.findWishlistByID(id);
-        if(wishlist == null || wishlist.getUserID() != user.getId()){
+        if (wishlist == null || wishlist.getUserID() != user.getId()) {
             return "redirect:/profile";
         }
 
-        if(wishlist.getShareToken() == null){
-            wishlistService.setShareToken(id,UUID.randomUUID().toString());
+        if (wishlist.getShareToken() == null) {
+            wishlistService.setShareToken(id, UUID.randomUUID().toString());
         }
         return "redirect:/profile/wishlist/" + id;
     }
 
     @GetMapping("/wishlist/share/{token}")
-    public String showSharedWishlist(@PathVariable String token, Model model){
+    public String showSharedWishlist(@PathVariable String token, Model model) {
         Wishlist wishlist = wishlistService.findWishlistByShareToken(token);
-        if(wishlist == null){
+        if (wishlist == null) {
             return "redirect:/login";
         }
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());

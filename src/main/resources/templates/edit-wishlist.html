@@ -11,13 +11,16 @@
     <div th:replace="~{fragment/header :: site-header}"></div>
 </header>
 
+<p>
+    <br>
+</p>
+
 <form th:action="@{/wishlist/{id}/edit(id=${wishlist.ID})}"
       method="post">
     <label for="title">Indtast nyt navn på liste:</label>
     <input type="text" id="title" name="title" th:value="${wishlist.title}" required/>
 
-    <button type="submit">Gem ændringer</button>
-    <a th:href="@{/wishlist/{id}(id=${wishlist.ID})}">Annuller</a>
+    <button class="top-margin" type="submit">Gem ændringer</button>
 
 </form>
 

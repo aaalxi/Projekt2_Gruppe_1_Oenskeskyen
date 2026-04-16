@@ -444,3 +444,17 @@ textarea:focus {
 #black {
     color: black;
 }
+
+.edit-button {
+    background-color: #2F72B8FF;
+    /*padding-top: 4px;*/
+    /*font-size: 14px;*/
+}
+
+.edit-button:hover {
+    background-color: #0D62BBFF;
+}
+
+.top-margin {
+    margin-top: 16px;
+}
