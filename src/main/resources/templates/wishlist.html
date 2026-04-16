@@ -22,11 +22,12 @@
                 <a th:if="${wishlist.shareToken != null}"
                    th:href="@{/wishlist/share/{token}(token=${wishlist.shareToken})}"
                    target="_blank">
-                    Åbn delt liste
+                    Åbn delt liste her og kopier og send linket
                 </a>
             </div>
 
-            <form th:action="@{/profile/deleteWishlist}" method="post">
+            <form th:action="@{/profile/deleteWishlist}" method="post"
+                  onsubmit="return confirm('Er du sikker på, at du vil slette din ønskeliste?');">
                 <input type="hidden" th:name="ID" th:value="${wishlist.ID}">
                 <button type="submit" class="delete-button">Slet ønskeliste</button>
             </form>
@@ -36,7 +37,6 @@
             <div class="wish-individual" th:each="wish : ${wishes}">
                 <strong><p id="black" th:text="${wish.getName()}"></p></strong>
                 <p th:text="${wish.getPrice()+wish.getCurrency()}"></p>
-                <!-- denne side er ikke færdig endnu -->
 
                 <form class="delete-button-container" th:action="@{/wishlist/delete}" method="post">
                     <input type="hidden" th:name="wishId" th:value="${wish.ID}">
