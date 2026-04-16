@@ -16,14 +16,14 @@ public class ReservationRepo {
     @Autowired
     DataSource dataSource;
 
-    public void createReservationForWish(int wishID, int userID) {
+    public void createReservationForWish(int wishID, int reservingUserID) {
         String sql = "INSERT INTO reservation (wish_id, reserved_by_user_id) VALUES(?,?)";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, wishID);
-            statement.setInt(2, userID);
+            statement.setInt(2, reservingUserID);
 
             statement.executeUpdate();
 
