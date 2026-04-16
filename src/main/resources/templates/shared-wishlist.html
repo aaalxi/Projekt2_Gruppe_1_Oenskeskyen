@@ -20,7 +20,6 @@
                 <strong><p id="black" th:text="${wish.getName()}"></p></strong>
                 <p th:text="${wish.getPrice() + wish.getCurrency()}"></p>
 
-                <!-- Ikke reserveret — vis reserver knap -->
                 <form th:if="${canReserve && !reservedWishIDs.contains(wish.ID)}"
                       th:action="@{/wishlist/reserve}" method="post">
                     <input type="hidden" name="wishID" th:value="${wish.ID}">
@@ -28,7 +27,6 @@
                     <button type="submit">Reserver</button>
                 </form>
 
-                <!-- Reserveret af mig — vis annuller knap -->
                 <form th:if="${canReserve && myReservationIDs.contains(wish.ID)}"
                       th:action="@{/wishlist/cancelReservation}" method="post">
                     <input type="hidden" name="wishID" th:value="${wish.ID}">
@@ -36,7 +34,6 @@
                     <button type="submit" class="delete-button">Annuller reservation</button>
                 </form>
 
-                <!-- Reserveret af en anden — vis tekst -->
                 <p th:if="${canReserve && reservedWishIDs.contains(wish.ID) && !myReservationIDs.contains(wish.ID)}">
                     Reserveret
                 </p>
