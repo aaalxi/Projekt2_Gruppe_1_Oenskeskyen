@@ -1,8 +1,10 @@
 package com.example.projekt2_gruppe_1_oenskeskyen.controller;
 
+import com.example.projekt2_gruppe_1_oenskeskyen.model.Reservation;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.User;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wish;
 import com.example.projekt2_gruppe_1_oenskeskyen.model.Wishlist;
+import com.example.projekt2_gruppe_1_oenskeskyen.service.ReservationService;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishService;
 import com.example.projekt2_gruppe_1_oenskeskyen.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +28,9 @@ public class WishlistController {
 
     @Autowired
     WishService wishService;
+
+    @Autowired
+    ReservationService reservationService;
 
     @GetMapping("/profile/createWishlist")
     public String showCreateWishlist() {
@@ -116,12 +121,27 @@ public class WishlistController {
             return "redirect:/login";
         }
 
+        ArrayList<Integer> reservedWishIDs = new ArrayList<>();
+        ArrayList<Integer> myReservationIDs = new ArrayList<>();
         User user = (User) session.getAttribute("user");
         boolean canReserve = user != null && wishlist.getUserID() != user.getId();
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
+        for(Wish wish : wishes){
+            Reservation reservation = reservationService.getReservationByWishID(wish.getID());
+            if(reservation != null){
+                reservedWishIDs.add(wish.getID());
+
+                if(user != null && reservation.getReservedByUserID() == user.getId()){
+                    myReservationIDs.add(wish.getID());
+                }
+            }
+        }
+
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
         model.addAttribute("canReserve", canReserve);
+        model.addAttribute("reservedWishIDs", reservedWishIDs);
+        model.addAttribute("myReservationIDs", myReservationIDs);
 
         return "shared-wishlist";
     }
