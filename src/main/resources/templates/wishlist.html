@@ -16,7 +16,8 @@
         <div class="wishlist-title-container">
             <h3 th:text="${wishlist.title}"></h3>
             <div class="share-link">
-                <form th:if="${wishlist.shareToken == null}" th:action="@{/profile/wishlist/share/{id}(id=${wishlist.ID})}" method="post">
+                <form th:if="${wishlist.shareToken == null}"
+                      th:action="@{/profile/wishlist/share/{id}(id=${wishlist.ID})}" method="post">
                     <button type="submit">Lav et delelink</button>
                 </form>
                 <a th:if="${wishlist.shareToken != null}"
@@ -24,7 +25,14 @@
                    target="_blank">
                     Åbn delt liste her og kopier og send linket
                 </a>
+
+                <div class="wishlist-wishes">
+                    <a th:href="@{/wishlist/{id}/edit(id=${wishlist.ID})}">
+                        <button class="edit-button" type="submit">Rediger navn</button>
+                    </a>
+                </div>
             </div>
+
 
             <form th:action="@{/profile/deleteWishlist}" method="post"
                   onsubmit="return confirm('Er du sikker på, at du vil slette din ønskeliste?');">
@@ -67,13 +75,6 @@
     </div>
 </div>
 
-<div class="main-content">
-    <div class="wishlist-button">
-        <a th:href="@{/wishlist/{id}/edit(id=${wishlist.ID})}">
-            <button class="edit-button" type="submit">Ændre ønskeliste</button>
-        </a>
-    </div>
-</div>
 
 <footer th:replace="~{fragment/footer :: site-footer}"></footer>
 </body>
