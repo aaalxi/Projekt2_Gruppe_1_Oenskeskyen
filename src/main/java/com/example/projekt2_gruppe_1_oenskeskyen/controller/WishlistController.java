@@ -139,6 +139,9 @@ public class WishlistController {
 
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
+        model.addAttribute("canReserve", canReserve);
+        model.addAttribute("reservedWishIDs", reservedWishIDs);
+        model.addAttribute("myReservationIDs", myReservationIDs);
 
         return "shared-wishlist";
     }
