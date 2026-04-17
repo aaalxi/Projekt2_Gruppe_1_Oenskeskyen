@@ -124,6 +124,7 @@ public class WishlistController {
         ArrayList<Integer> reservedWishIDs = new ArrayList<>();
         ArrayList<Integer> myReservationIDs = new ArrayList<>();
         User user = (User) session.getAttribute("user");
+        /* canReserve er true hvis session user ikke er null og den session user ikke er ejer af den ønskeliste der er delt. */
         boolean canReserve = user != null && wishlist.getUserID() != user.getId();
         ArrayList<Wish> wishes = wishService.getWishesByWishlistID(wishlist.getID());
         for(Wish wish : wishes){
